@@ -46,10 +46,11 @@
           <p>Fill in your credentials to log in.</p>
           <hr />
           <label for="email"><b>Email</b></label>
-          <input class="input-login" type="email" placeholder="Enter Email" name="email" required>
+          <input class="input-login" type="email" placeholder="Enter Email" name="email" title="Please type in your email address that you signed up with." required autofocus>
 
           <label for="password"><b>Password</b></label>
-          <input class="input-login" type="password" placeholder="Enter Password" name="password" required>
+          <input class="input-login" type="password" placeholder="Enter Password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+            title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
 
           <button type="submit">Login</button>
         </div>
@@ -68,16 +69,19 @@
           <p>Please fill in the form to create your account.</p>
           <hr />
           <label for="name"><b>Name</b></label>
-          <input class="signup-input" type="text" placeholder="Enter Name" name="name" required>
+          <input class="signup-input" type="text" placeholder="Enter Name" name="name" pattern="[A-Za-z0-9 ]{1,25}"
+                      title="Name can only be a combination of letters and/or numbers." required autofocus>
 
           <label for="email"><b>Email</b></label>
-          <input class="signup-input" type="email" placeholder="Enter Email" name="email" required>
+          <input class="signup-input" type="email" placeholder="Enter Email" name="email" title="Please type in your email address." required>
 
           <label for="password"><b>Password</b></label>
-          <input class="signup-input" type="password" placeholder="Enter Password" name="password" required>
+          <input class="signup-input" type="password" placeholder="Enter Password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+            title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
 
           <label for="password-repeat"><b>Repeat Password</b></label>
-          <input class="signup-input" type="password" placeholder="Repeat Password" name="password-repeat" required>
+          <input class="signup-input" type="password" placeholder="Repeat Password" name="password-repeat" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+            title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
 
           <div class="clearfix">
             <button type="button" onclick="document.getElementById('signup').style.display='none'" class="cancelbtn">Cancel</button>
@@ -91,33 +95,23 @@
     <section id="one" class="wrapper special">
       <div class="inner">
         <header class="major">
-          <h2>Lorem ipsum feugiat tempus</h2>
+          <h2>Features</h2>
         </header>
         <div class="features">
           <div class="feature">
             <i class="fa fa-diamond"></i>
-            <h3>Etiam consequat</h3>
-            <p>Sed tempus feugiat adipiscing nisl cursus aliquam dolore.</p>
+            <h3>Individual Account Management</h3>
+            <p>Log in to create and manage your own polls.</p>
           </div>
           <div class="feature">
             <i class="fa fa-copy"></i>
-            <h3>Sed adipiscing</h3>
-            <p>Sed tempus feugiat adipiscing nisl cursus aliquam dolore.</p>
+            <h3>Share your opinion on other people's polls</h3>
+            <p>Browse the global poll dashboard to vote on polls that interest you.</p>
           </div>
           <div class="feature">
             <i class="fa fa-paper-plane-o"></i>
-            <h3>Feugiat nullam</h3>
-            <p>Sed tempus feugiat adipiscing nisl cursus aliquam dolore.</p>
-          </div>
-          <div class="feature">
-            <i class="fa fa-save"></i>
-            <h3>Amet imperdiet</h3>
-            <p>Sed tempus feugiat adipiscing nisl cursus aliquam dolore.</p>
-          </div>
-          <div class="feature">
-            <i class="fa fa-envelope-o"></i>
-            <h3>Tempus lorem</h3>
-            <p>Sed tempus feugiat adipiscing nisl cursus aliquam dolore.</p>
+            <h3>Real-time polls</h3>
+            <p>View the poll results in real-time. Polls stay forever unless the publisher takes it down.</p>
           </div>
         </div>
       </div>
