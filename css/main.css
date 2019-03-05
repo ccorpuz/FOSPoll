@@ -7,7 +7,7 @@
  * Kroc Camen, and the H5BP dev community and team.
  */
 
- 
+
 /* ==========================================================================
    Base styles: opinionated defaults
    ========================================================================== */
@@ -29,8 +29,7 @@
  */
 
 ::selection {
-    background: #b3d4fc;
-    text-shadow: none;
+    background: #E53935;
 }
 
 /*
@@ -192,7 +191,7 @@ textarea {
   clear: both;
 }
 
- 
+
 /* ==========================================================================
    EXAMPLE Media Queries for Responsive Design.
    These examples override the primary ('mobile first') styles.
@@ -210,7 +209,7 @@ textarea {
     /* Style adjustments for high resolution devices */
 }
 
- 
+
 /* ==========================================================================
    Print styles.
    Inlined to avoid the additional HTTP request:
@@ -286,5 +285,3 @@ textarea {
         page-break-after: avoid;
     }
 }
-
-

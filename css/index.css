@@ -1,0 +1,602 @@
+@import url(font-awesome.min.css);
+@import url("http://fonts.googleapis.com/css?family=Raleway:500,700");
+
+/*
+	Typify by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+*/
+html {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  font-family: 'Raleway', sans-serif;
+  vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+body {
+  -webkit-text-size-adjust: none;
+}
+
+/* Box Model */
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* Banner */
+#banner {
+  background-color: #00cdcf;
+  color: #ffffff;
+  padding: 8em 0 6em 0;
+  text-align: center;
+}
+
+#banner h2 {
+  color: #ffffff;
+}
+
+#banner h2 {
+  border-style: double solid;
+  border-width: 4px 1px;
+  font-size: 2.4em;
+  line-height: 1.35em;
+  margin: 0 auto 1em;
+  padding: 1.1em;
+  position: relative;
+  width: 40%;
+}
+
+#banner p {
+  font-size: 1.5em;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 1680px) {
+  #banner {
+    padding: 8em 0 6em 0;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  #banner {
+    padding: 6em 0 4em 0;
+  }
+
+  #banner h2 {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  #banner {
+    padding: 4em 2em 2em 2em;
+  }
+
+  #banner h2 {
+    width: 75%;
+  }
+}
+
+@media screen and (max-width: 736px) {
+  #banner {
+    padding: 3em 1.5em 1em 1.5em;
+  }
+
+  #banner h2 {
+    font-size: 2em;
+  }
+
+  #banner p {
+    font-size: 1.25em;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #banner {
+    padding: 3em 1em 1em 1em;
+  }
+
+  #banner h2 {
+    font-size: 1.65em;
+    width: 100%;
+  }
+}
+
+/* Section */
+section.special {
+  text-align: center;
+}
+
+header {
+  margin-bottom: 1em;
+}
+
+header p {
+  position: relative;
+  margin: 0 0 1.5em 0;
+  text-transform: uppercase;
+}
+
+header h2, header h3 {
+  display: inline-block;
+  padding-bottom: 0.4em;
+  border-bottom-style: double;
+  border-bottom-width: 4px;
+}
+
+header h2+p {
+  font-size: 1.25em;
+  margin-top: -0.5em;
+  line-height: 1.5em;
+}
+
+header h3+p {
+  font-size: 1.1em;
+  line-height: 1.5em;
+}
+
+header.major {
+  margin-bottom: 4em;
+}
+
+@media screen and (max-width: 1280px) {
+  header.major {
+    margin-bottom: 2em;
+  }
+}
+
+@media screen and (max-width: 736px) {
+  header.major {
+    margin-bottom: 1.5em;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  header.major {
+    margin-bottom: 1em;
+  }
+}
+
+header h2, header h3 {
+  border-bottom-color: #e3e3e3;
+}
+
+header p {
+  color: #bbb;
+}
+
+/* Feature */
+.features {
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  -moz-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -moz-justify-content: center;
+  -webkit-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  margin-bottom: 2em;
+}
+
+.feature {
+  padding: 2em 2em 0.1em 2em;
+  border-style: solid;
+  border-width: 1px;
+  margin-left: -1px;
+  margin-top: -1px;
+  width: 33.33333%;
+}
+
+.feature .fa {
+  font-size: 2.8em;
+  margin-bottom: 0.7em;
+}
+
+@media screen and (max-width: 1280px) {
+  .feature {
+    padding: 2em 1.5em 0.1em 1.5em;
+  }
+}
+
+@media screen and (max-width: 736px) {
+  .feature {
+    padding: 2em 1em 0.1em 1em;
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .feature {
+    padding: 2em 0.5em 0.1em 0.5em;
+    width: 100%;
+  }
+}
+
+.feature {
+  border-color: #e3e3e3;
+}
+
+.feature .fa {
+  color: #00cdcf;
+}
+
+/* Wrapper */
+.wrapper {
+  padding: 6em 0 4em 0;
+  position: relative;
+}
+
+.wrapper>.inner {
+  margin: 0 auto;
+  width: 65em;
+}
+
+.wrapper>.inner.narrow {
+  width: 35em;
+}
+
+@media screen and (max-width: 1280px) {
+  .wrapper {
+    padding: 5em 0 3em 0;
+  }
+
+  .wrapper>.inner {
+    width: 60em;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .wrapper {
+    padding: 4em 2em 2em 2em;
+  }
+
+  .wrapper>.inner {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 736px) {
+  .wrapper {
+    padding: 3em 1.5em 1em 1.5em;
+  }
+
+  .wrapper>.inner.narrow {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .wrapper {
+    padding: 2em 1em 0.1em 1em;
+  }
+
+  .wrapper>.inner.narrow {
+    width: 100%;
+  }
+}
+
+/* Footer */
+#footer {
+  background-color: #f7f7f7;
+  color: #444;
+  padding: 5em 0 4em 0;
+  position: relative;
+}
+
+#footer:before {
+  background-color: #ddd;
+  content: '';
+  height: 1px;
+  left: 30%;
+  position: absolute;
+  top: 0;
+  width: 40%;
+}
+
+#footer .copyright {
+  color: #bbb;
+  font-size: 0.9em;
+  margin: 0 0 2em 0;
+  padding: 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 1280px) {
+  #footer {
+    padding: 4em 2em 3em 2em;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  #footer {
+    padding: 3em 2em 2em 2em;
+  }
+
+  #footer:before {
+    width: 75%;
+    left: 12.5%;
+  }
+}
+
+@media screen and (max-width: 736px) {
+  #footer {
+    padding: 3em 2em 1em 2em;
+  }
+
+  #footer:before {
+    width: 85%;
+    left: 7.5%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #footer {
+    padding: 2em 1em 0.1em 1em;
+  }
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+button:hover {
+  opacity: 1;
+}
+
+.main-signup-btn {
+	background-color: #F44336;
+}
+
+/* SIGN UP */
+.login-signup-btn {
+  text-align: center;
+}
+
+/* Full-width input fields */
+.signup-input {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* Add a background color when the inputs get focus */
+.signup-input:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  padding: 14px 20px;
+  background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 50%;
+}
+
+/* Add padding to container elements */
+.container-signup {
+  padding: 16px;
+}
+
+/* The Modal (background) */
+.modal-signup {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+  padding-top: 50px;
+}
+
+/* Modal Content/Box */
+.modal-content-signup {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto;
+  /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 80%;
+  /* Could be more or less, depending on screen size */
+}
+
+/* Style the horizontal ruler */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* The Close Button (x) */
+.signup-close {
+  position: absolute;
+  right: 35px;
+  top: 15px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #f1f1f1;
+}
+
+.signup-close:hover,
+.signup-close:focus {
+  color: #f44336;
+  cursor: pointer;
+}
+
+.animate-signup {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+  .cancelbtn, .signupbtn {
+    width: 100%;
+  }
+}
+
+.signupbtn {
+	background-color: #4CAF50;
+}
+
+/* LOGIN */
+/* Full-width input fields */
+.input-login {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn-login {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+.container-login {
+  padding: 16px;
+}
+
+.close-login.password {
+  float: right;
+  padding-top: 16px;
+}
+
+/* The Modal (background) */
+.modal-login {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content-login {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto;
+  /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 80%;
+  /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button (x) */
+.close-login {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close-login:hover,
+.close-login:focus {
+  color: red;
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate-login {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {
+    -webkit-transform: scale(0)
+  }
+
+  to {
+    -webkit-transform: scale(1)
+  }
+}
+
+@keyframes animatezoom {
+  from {
+    transform: scale(0)
+  }
+
+  to {
+    transform: scale(1)
+  }
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  .close-login.password {
+    display: block;
+    float: none;
+  }
+
+  .cancelbtn-login {
+    width: 100%;
+  }
+}
