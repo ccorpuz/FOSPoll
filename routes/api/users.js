@@ -4,6 +4,11 @@ const jwt = require("jsonwebtoken");
 const passport = require("passport");
 const router = express.Router();
 
+//  Load input validation
+const validateRegisterInput = require("../../validation/register");
+const validateLoginInput = require("../../validation/login");
+
+//  Load Keys
 const keys = require("../../config/keys");
 //  Load User model
 const User = require("../../models/User");
@@ -17,9 +22,16 @@ router.get("/test", (req, res) => res.json({ msg: "Users route works!" }));
 // @desc    Register a user
 // @access  Public
 router.post("/register", (req, res) => {
+  // Validate input
+  const { errors, isValid } = validateRegisterInput(req.body);
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
   User.findOne({ email: req.body.email }).then(user => {
     if (user) {
-      return res.status(400).json({ err: "Email already exists!" });
+      errors.email = "Email already exists!";
+      return res.status(400).json(errors);
     } else {
       const newUser = new User({
         name: req.body.name,
@@ -45,6 +57,12 @@ router.post("/register", (req, res) => {
 // @desc    Log a user in
 // @access  Public
 router.post("/login", (req, res) => {
+  // Validate input
+  const { errors, isValid } = validateLoginInput(req.body);
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
   const email = req.body.email;
   const password = req.body.password;
 
@@ -52,7 +70,8 @@ router.post("/login", (req, res) => {
   User.findOne({ email }).then(user => {
     //  Check for user
     if (!user) {
-      return res.status(404).json({ err: "User not found" });
+      errors.email = "User not found.";
+      return res.status(404).json(errors);
     }
 
     //  Check password
@@ -67,7 +86,8 @@ router.post("/login", (req, res) => {
           });
         });
       } else {
-        return res.status(400).json({ err: "Password is incorrect!" });
+        errors.password = "Password incorrect";
+        return res.status(400).json(errors);
       }
     });
   });
