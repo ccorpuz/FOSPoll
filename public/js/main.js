@@ -24,7 +24,10 @@ function register(e, form) {
 
   fetch(request)
     .then(res => {
-      console.log(res);
+      return res.json();
+    })
+    .then(data => {
+      console.log(data.name);
     })
     .catch(err => console.log(err));
 }
