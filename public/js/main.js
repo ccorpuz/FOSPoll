@@ -27,7 +27,7 @@ function register(e, form) {
       return res.json();
     })
     .then(data => {
-      console.log(data.name);
+      console.log(data);
     })
     .catch(err => console.log(err));
 }
