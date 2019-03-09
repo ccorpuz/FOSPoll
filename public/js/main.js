@@ -1,7 +1,3 @@
-function testFunc() {
-  console.log("Hello World");
-}
-
 function register(e, form) {
   e.preventDefault();
   var new_name = document.getElementById("register_name").value;
@@ -16,17 +12,17 @@ function register(e, form) {
     cpassword: new_cpassword
   };
 
-  var request = new Request("api/users/register", {
+  var register_request = new Request("api/users/register", {
     method: "POST",
     body: JSON.stringify(newUser),
     headers: { "Content-Type": "application/json" }
   });
 
-  fetch(request)
+  fetch(register_request)
     .then(res => {
       if (res.ok) {
         //  Redirect
-        window.location.replace("/test.html");
+        window.location.replace("/");
       } else {
         return res.json();
       }
@@ -35,6 +31,41 @@ function register(e, form) {
       errors = Object.values(data);
       errors.forEach(key => {
         document.getElementById("err_label").innerHTML += "\n" + key;
+      });
+    })
+    .catch(err => console.log(err));
+}
+
+function login(e, form) {
+  e.preventDefault();
+
+  var login_email = document.getElementById("login_email").value;
+  var login_password = document.getElementById("login_password").value;
+
+  loginUser = {
+    email: login_email,
+    password: login_password
+  };
+
+  var login_request = new Request("api/users/login", {
+    method: "POST",
+    body: JSON.stringify(loginUser),
+    headers: { "Content-Type": "application/json" }
+  });
+
+  fetch(login_request)
+    .then(res => {
+      if (res.ok) {
+        //  Redirect on login
+        window.location.replace("/test.html");
+      } else {
+        return res.json();
+      }
+    })
+    .then(data => {
+      errors = Object.values(data);
+      errors.forEach(key => {
+        document.getElementById("err_label1").innerHTML += "\n" + key;
       });
     })
     .catch(err => console.log(err));
