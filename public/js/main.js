@@ -24,10 +24,18 @@ function register(e, form) {
 
   fetch(request)
     .then(res => {
-      return res.json();
+      if (res.ok) {
+        //  Redirect
+        window.location.replace("/test.html");
+      } else {
+        return res.json();
+      }
     })
     .then(data => {
-      console.log(data);
+      errors = Object.values(data);
+      errors.forEach(key => {
+        document.getElementById("err_label").innerHTML += "\n" + key;
+      });
     })
     .catch(err => console.log(err));
 }
