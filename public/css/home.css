@@ -1,0 +1,397 @@
+@import url(font-awesome.min.css);
+@import url("http://fonts.googleapis.com/css?family=Raleway:500,700");
+@import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:700';
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  font-family: 'Raleway', sans-serif;
+  vertical-align: baseline;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+}
+
+nav {
+  background-color: #333;
+  margin: 0;
+  overflow: hidden;
+  text-align: center;
+}
+
+nav h1 {
+  float: left;
+  display: inline-block;
+  color: #00cdcf;
+  margin-left: 10px;
+  font-size: 3vh;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  /* This allow us to arrange list items in a row, without using float */
+  display: inline-block;
+  list-style-type: none;
+  font-size: 2.5vh;
+}
+
+/* Create a style for the first level items */
+nav>ul>li>a {
+  color: white;
+  display: block;
+  line-height: 2.5em;
+  padding: 0.5em 0.5em;
+  text-decoration: none;
+}
+
+nav li>ul {
+  display: none;
+}
+
+nav li>ul li {
+  display: block;
+}
+
+nav li>ul li a {
+  color: white;
+  display: block;
+  line-height: 2em;
+  padding: 0.5em 2em;
+  text-decoration: none;
+}
+
+/* Change the background color when mouse over items */
+nav li:hover {
+  background-color: #666;
+}
+
+/* display the submenu on mouse over main menu item*/
+nav li:hover>ul {
+  position: absolute;
+  display: block;
+  background-color: #666;
+}
+
+nav li:hover>ul>li:hover {
+  background-color: #00cdcf;
+}
+
+nav #logout {
+  float: right;
+  margin-right: 10px;
+}
+
+nav #logout a:hover {
+  background-color: red;
+}
+
+nav>ul>li>a:hover {
+  background-color: #00cdcf;
+}
+
+nav ul>li.dd {
+  background-image: url("../img/white-down-arrow.png");
+  background-size: 2.5vh;
+  background-position: bottom;
+  background-repeat: no-repeat;
+}
+
+.main-container {
+flex: 1 0 auto;
+}
+
+.page-title {
+  text-align: center;
+}
+
+.page-title h1 {
+  font-size: 6vmin;
+}
+
+.page-title hr {
+  width: 60%;
+}
+
+.poll-btn-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+a.poll-btn {
+  font-family: 'Source Sans Pro', sans-serif;
+  color: #00cdcf;
+  text-decoration: none;
+  -webkit-transition: 0.3s all ease;
+  transition: 0.3s ease all;
+}
+
+a.poll-btn:hover {
+  color: #FFF;
+}
+
+a.poll-btn:focus {
+  color: #FFF;
+}
+
+.poll-btn {
+  cursor: pointer;
+  font-size: 18px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  text-align: center;
+  width: 40vmin;
+  font-weight: bold;
+  padding: 14px 0px;
+  border: 3px solid #00cdcf;
+  border-radius: 2px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.poll-btn:before {
+  -webkit-transition: 0.5s all ease;
+  transition: 0.5s all ease;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  opacity: 0;
+  content: '';
+  background-color: #00cdcf;
+  z-index: -2;
+}
+
+.poll-btn:hover::before {
+  -webkit-transition: 0.5s all ease;
+  transition: 0.5s all ease;
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+
+.poll--btn:focus::before {
+  transition: 0.5s all ease;
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+
+.container-create-poll {
+  padding: 16px;
+}
+
+.close-create-poll {
+  float: right;
+  padding-top: 16px;
+  cursor: pointer;
+}
+
+.modal-poll {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+.modal-content-poll {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto;
+  /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 60vmin;
+  /* Could be more or less, depending on screen size */
+}
+
+.input-question {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.input-option {
+  box-sizing: border-box;
+  display: block;
+  border: none;
+  background: #f1f1f1;
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+}
+
+.input-option:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+.create-btn {
+  background-color: #3F51B5;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.8;
+  font-family: 'Raleway', sans-serif;
+}
+
+.create-btn:hover {
+  opacity: 1;
+}
+
+/* The Close Button (x) */
+.close-create-poll {
+  position: absolute;
+  right: 40px;
+  top: 50px;
+  color: black;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close-create-poll:hover,
+.close-create-poll:focus {
+  color: red;
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate-create-poll {
+  -webkit-animation: animatezoom 0.5s;
+  animation: animatezoom 0.5s;
+}
+
+@-webkit-keyframes animatezoom {
+  from {
+    -webkit-transform: scale(0)
+  }
+
+  to {
+    -webkit-transform: scale(1)
+  }
+}
+
+@keyframes animatezoom {
+  from {
+    transform: scale(0)
+  }
+
+  to {
+    transform: scale(1)
+  }
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  .close-create-poll {
+    display: block;
+    float: none;
+  }
+}
+
+/* Footer */
+#footer {
+  background-color: #f7f7f7;
+  color: #444;
+  padding: 5em 0 4em 0;
+  position: relative;
+  flex-shrink: 0;
+  
+}
+
+#footer:before {
+  background-color: #ddd;
+  content: '';
+  height: 1px;
+  left: 30%;
+  position: absolute;
+  top: 0;
+  width: 40%;
+}
+
+#footer .copyright {
+  color: #bbb;
+  font-size: 0.9em;
+  margin: 0 0 2em 0;
+  padding: 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 1280px) {
+  #footer {
+    padding: 4em 2em 3em 2em;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  #footer {
+    padding: 3em 2em 2em 2em;
+  }
+
+  #footer:before {
+    width: 75%;
+    left: 12.5%;
+  }
+}
+
+@media screen and (max-width: 736px) {
+  #footer {
+    padding: 3em 2em 1em 2em;
+  }
+
+  #footer:before {
+    width: 85%;
+    left: 7.5%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #footer {
+    padding: 2em 1em 0.1em 1em;
+  }
+}

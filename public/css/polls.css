@@ -1,0 +1,178 @@
+@import url(font-awesome.min.css);
+@import url("http://fonts.googleapis.com/css?family=Raleway:500,700");
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  font-family: 'Raleway', sans-serif;
+  vertical-align: baseline;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+}
+
+nav {
+    background-color: #333;
+    margin: 0;
+    overflow: hidden;
+    text-align: center;
+}
+
+nav h1 {
+  float: left;
+  display: inline-block;
+  color: #00cdcf;
+  margin-left: 10px;
+  font-size: 3vh;
+}
+
+nav ul{
+    margin: 0;
+    padding: 0;
+}
+nav ul li {
+    /* This allow us to arrange list items in a row, without using float */
+    display: inline-block;
+    list-style-type: none;
+    font-size: 2.5vh;
+}
+
+/* Create a style for the first level items */
+nav > ul > li > a {
+    color: white;
+    display: block;
+    line-height: 2.5em;
+    padding: 0.5em 0.5em;
+    text-decoration: none;
+}
+
+nav li > ul {
+  display: none;
+}
+
+nav li > ul li{
+    display: block;
+}
+
+nav li > ul li a {
+    color: white;
+    display: block;
+    line-height: 2em;
+    padding: 0.5em 2em;
+    text-decoration: none;
+}
+
+/* Change the background color when mouse over items */
+nav li:hover {
+    background-color: #666;
+}
+/* display the submenu on mouse over main menu item*/
+nav li:hover > ul{
+    position:absolute;
+    display : block;
+    background-color: #666;
+}
+
+nav li:hover > ul > li:hover{
+    background-color: #00cdcf;
+}
+
+nav #logout {
+  float: right;
+  margin-right: 10px;
+}
+
+nav #logout a:hover {
+  background-color: red;
+}
+
+nav > ul > li > a:hover {
+  background-color:#00cdcf;
+}
+
+nav ul > li.dd{
+    background-image: url("../img/white-down-arrow.png");
+    background-size: 2.5vh;
+    background-position: bottom;
+    background-repeat: no-repeat;
+}
+
+.page-title {
+  text-align: center;
+}
+
+/* Footer */
+#footer {
+  background-color: #f7f7f7;
+  color: #444;
+  padding: 5em 0 4em 0;
+  position: relative;
+}
+
+#footer:before {
+  background-color: #ddd;
+  content: '';
+  height: 1px;
+  left: 30%;
+  position: absolute;
+  top: 0;
+  width: 40%;
+}
+
+#footer .copyright {
+  color: #bbb;
+  font-size: 0.9em;
+  margin: 0 0 2em 0;
+  padding: 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 1280px) {
+  #footer {
+    padding: 4em 2em 3em 2em;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  #footer {
+    padding: 3em 2em 2em 2em;
+  }
+
+  #footer:before {
+    width: 75%;
+    left: 12.5%;
+  }
+}
+
+@media screen and (max-width: 736px) {
+  #footer {
+    padding: 3em 2em 1em 2em;
+  }
+
+  #footer:before {
+    width: 85%;
+    left: 7.5%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #footer {
+    padding: 2em 1em 0.1em 1em;
+  }
+}
