@@ -1,6 +1,6 @@
 {
-  "short_name": "",
-  "name": "",
+  "short_name": "FOS Polling",
+  "name": "Freedom Of Speech Polling site",
   "icons": [{
     "src": "icon.png",
     "type": "image/png",

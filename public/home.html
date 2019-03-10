@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="utf-8">
+  <title>FOS Polling - Home</title>
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="manifest" href="site.webmanifest" />
+  <link rel="apple-touch-icon" href="icon.png" />
+
+  <link rel="stylesheet" href="css/home.css" />
+</head>
+
+<body>
+  <div class="main-container">
+  <nav>
+    <h1>FOS Polling</h1>
+    <ul>
+      <li class="dd">
+        <a href="home.html">Home</a>
+        <ul>
+          <li><a href="#create-poll">Create a poll</a></li>
+        </ul>
+      </li>
+      <li><a href="polls.html">Polls</a></li>
+      <li id="logout"><a href="#logout">Log out</a></li>
+    </ul>
+  </nav>
+    <div class="page-title">
+      <h1>Welcome Back</h1>
+      <h3>My polls</h3>
+        <label>No polls created yet</label>
+        <hr/>
+          <div class="poll-btn-box">
+            <a onclick="document.getElementById('modal-create-poll').style.display='block'" type="button" id="crt-poll-btn" class="poll-btn">CREATE POLL</a>
+          </div>
+    </div>
+    <div id="modal-create-poll" class="modal-poll animate-create-poll">
+      <form class="modal-content-poll" action="" method="POST">
+        <span onclick="document.getElementById('modal-create-poll').style.display='none'" class="close-create-poll" title="Close Modal">&#215;</span>
+        <div class="container-create-poll">
+
+          <h1>Create your poll</h1>
+          <hr/>
+          <label for="question"><b>Question</b></label>
+          <input id="question" class="input-question" type="text" placeholder="Do you like cats or dogs?" name="question" title="Please type in the question for you poll." required autofocus />
+
+          <label for="option1"><b>Option 1</b></label>
+          <input id="option1" class="input-option" type="text" placeholder="Enter Option 1 here - required" name="option1" title="Please type in your desired option here - required" required />
+
+          <label for="option2"><b>Option 2</b></label>
+          <input id="option2" class="input-option" type="text" placeholder="Enter Option 2 here - required" name="option2" title="Please type in your desired option here - required" required />
+
+          <label for="option3"><b>Option 3</b></label>
+          <input id="option3" class="input-option" type="text" placeholder="Enter Option 3 here" name="option3" title="Please type in your desired option here" />
+
+          <label for="option4"><b>Option 4</b></label>
+          <input id="option4" class="input-option" type="text" placeholder="Enter Option 4 here" name="option4" title="Please type in your desired option here" />
+
+          <button class="create-btn" type="submit">Create</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="copyright">
+      &#169; 2019, Freedom Of Speech Polling
+    </div>
+  </footer>
+</body>
+
+</html>
