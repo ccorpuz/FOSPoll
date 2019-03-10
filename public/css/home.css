@@ -119,6 +119,10 @@ nav ul>li.dd {
   background-repeat: no-repeat;
 }
 
+.nav-create-poll {
+  cursor: pointer;
+}
+
 .main-container {
 flex: 1 0 auto;
 }
@@ -340,7 +344,6 @@ a.poll-btn:focus {
   padding: 5em 0 4em 0;
   position: relative;
   flex-shrink: 0;
-  
 }
 
 #footer:before {

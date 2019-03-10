@@ -14,31 +14,36 @@
 </head>
 
 <body>
-  <nav>
-    <h1>FOS Polling</h1>
-    <ul>
-      <li class="dd">
-        <a href="home.html">Home</a>
-        <ul>
-          <li><a href="#create-poll">Create a poll</a></li>
-        </ul>
-      </li>
-      <li><a href="polls.html">Polls</a></li>
-      <li id="logout"><a href="#logout">Log out</a></li>
-    </ul>
-  </nav>
   <div class="main-container">
+    <nav>
+      <h1>FOS Polling</h1>
+      <ul>
+        <li class="dd">
+          <a href="home.html">Home</a>
+          <ul>
+            <li><a id="create-poll" class="nav-create-poll">Create a poll</a></li>
+          </ul>
+        </li>
+        <li><a href="polls.html">Polls</a></li>
+        <li id="logout"><a href="#logout">Log out</a></li>
+      </ul>
+    </nav>
     <div class="page-title">
       <h1>Global polls</h1>
-      <p>View and vote on other members' polls<p>
+      <label>View and vote on other members' polls<label>
     </div>
-    <!-- Footer -->
-    <footer id="footer">
-      <div class="copyright">
-        &#169; 2019, Freedom Of Speech Polling
-      </div>
-    </footer>
   </div>
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="copyright">
+      &#169; 2019, Freedom Of Speech Polling
+    </div>
+  </footer>
+  <script type="text/javascript">
+    document.getElementById("create-poll").onclick = function() {
+      window.location = "home.html";
+    };
+  </script>
 </body>
 
 </html>

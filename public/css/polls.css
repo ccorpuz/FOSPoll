@@ -17,13 +17,17 @@ html {
   font: inherit;
   font-family: 'Raleway', sans-serif;
   vertical-align: baseline;
+  height: 100%;
 }
 
-body{
-    margin: 0;
-    padding: 0;
-    font-size: 15px;
-    -webkit-font-smoothing: antialiased;
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
 }
 
 nav {
@@ -112,6 +116,14 @@ nav ul > li.dd{
     background-repeat: no-repeat;
 }
 
+.nav-create-poll {
+  cursor: pointer;
+}
+
+.main-container {
+flex: 1 0 auto;
+}
+
 .page-title {
   text-align: center;
 }
@@ -122,6 +134,7 @@ nav ul > li.dd{
   color: #444;
   padding: 5em 0 4em 0;
   position: relative;
+  flex-shrink: 0;
 }
 
 #footer:before {
