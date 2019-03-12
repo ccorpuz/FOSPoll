@@ -30,12 +30,43 @@
     </nav>
     <div class="page-title">
       <h1>Welcome Back</h1>
-      <h3>My polls</h3>
-      <label>No polls created yet</label>
-      <hr />
+
       <div class="poll-btn-box">
         <a onclick="document.getElementById('modal-create-poll').style.display='block'" type="button" id="crt-poll-btn" class="poll-btn">CREATE POLL</a>
       </div>
+      <hr />
+      <h3>My polls</h3>
+      <!-- <label>No polls created yet</label> -->
+
+      <div class="polls-container">
+        <fieldset id="poll1" class="poll-bound">
+          <legend id="poll-legend">What is your JavaScript library of choice? - <strong>John Wick</strong></legend>
+          <form action="" id="form1" name="form1" method="POST">
+            <label>
+              <input type="radio" name="Poll" value="mootools" id="Poll_0" />
+              Mootools
+            </label>
+            <label>
+              <input type="radio" name="Poll" value="prototype" id="Poll_1" />
+              Prototype
+            </label>
+            <label>
+              <input type="radio" name="Poll" value="jquery" id="Poll_2" />
+              jQuery
+            </label>
+            <label>
+              <input type="radio" name="Poll" value="spry" id="Poll_3" />
+              Spry
+            </label>
+            <input type="submit" name="submit" id="submit" value="Vote" />
+            <button type="button" name="button" onclick="document.getElementById('view-results').style.display='block'">View results</button>
+            <input type="hidden" name="id" value="form1" />
+            <input type="hidden" name="MM_insert" value="form1" />
+          </form>
+        </fieldset>
+      </div>
+
+
     </div>
     <div id="modal-create-poll" class="modal-poll animate-create-poll">
       <form class="modal-content-poll" action="" method="POST">
