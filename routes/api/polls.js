@@ -33,4 +33,22 @@ router.post(
       .catch(err => console.log(err));
   }
 );
+
+// @route   GET api/polls/current
+// @desc    Get polls by the current user
+// @access  Private
+router.get(
+  "/current",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Poll.find({ creator: req.user.email }, (err, docs) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(docs);
+      }
+    });
+  }
+);
+
 module.exports = router;
