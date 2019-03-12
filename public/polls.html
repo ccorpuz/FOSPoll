@@ -32,6 +32,60 @@
       <h1>Global polls</h1>
       <label>View and vote on other members' polls<label>
     </div>
+    <div class="polls-container">
+      <fieldset id="poll1" class="poll-bound">
+        <legend id="poll-legend">What is your JavaScript library of choice? - <strong>John Wick</strong></legend>
+        <form action="" id="form1" name="form1" method="POST">
+          <label>
+            <input type="radio" name="Poll" value="mootools" id="Poll_0" />
+            Mootools
+          </label>
+          <label>
+            <input type="radio" name="Poll" value="prototype" id="Poll_1" />
+            Prototype
+          </label>
+          <label>
+            <input type="radio" name="Poll" value="jquery" id="Poll_2" />
+            jQuery
+          </label>
+          <label>
+            <input type="radio" name="Poll" value="spry" id="Poll_3" />
+            Spry
+          </label>
+          <input type="submit" name="submit" id="submit" value="Vote" />
+          <button type="button" name="button" onclick="document.getElementById('view-results').style.display='block'">View results</button>
+          <input type="hidden" name="id" value="form1" />
+          <input type="hidden" name="MM_insert" value="form1" />
+        </form>
+      </fieldset>
+      <fieldset id="view-results" class="results-poll1 poll-bound">
+        <canvas id="myChart" aria-label="Shows poll results" role="img">
+          <p>Poll results chart<p>
+        </canvas>
+      </fieldset>
+      <fieldset class="poll-bound">
+        <legend id="poll-legend">What is your JavaScript library of choice?- <strong>Mohawk</strong></legend>
+        <form action="" id="form2" name="form2" method="POST">
+          <label>
+            <input type="radio" name="Poll" value="mootools" id="Poll_0" />
+            Mootools
+          </label>
+          <label>
+            <input type="radio" name="Poll" value="prototype" id="Poll_1" />
+            Prototype
+          </label>
+          <label>
+            <input type="radio" name="Poll" value="jquery" id="Poll_2" />
+            jQuery
+          </label>
+          <label>
+            <input type="radio" name="Poll" value="spry" id="Poll_3" />
+            Spry
+          </label>
+          <input type="submit" name="submit" id="submit" value="Vote" />
+        </form>
+      </fieldset>
+    </div>
   </div>
   <!-- Footer -->
   <footer id="footer">
@@ -43,6 +97,48 @@
     document.getElementById("create-poll").onclick = function() {
       window.location = "home.html";
     };
+  </script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+  <script type="text/javascript">
+    var ctx = document.getElementById('myChart');
+    var pollName1, pollName2, pollName3, pollName4;
+    var poll1, poll2, poll3, poll4;
+
+    pollName1 = document.getElementById('Poll_0').value;
+    pollName2 = document.getElementById('Poll_1').value;
+    pollName3 = document.getElementById('Poll_2').value;
+    pollName4 = document.getElementById('Poll_3').value;
+
+
+
+    poll1 = 54;
+    poll2 = 60;
+    poll3 = 12;
+    poll4 = 16;
+
+
+
+    var chart = new Chart(ctx, {
+      // The type of chart we want to create
+      type: 'bar',
+
+      // The data for our dataset
+      data: {
+        labels: [pollName1, pollName2, pollName3, pollName4],
+        datasets: [{
+          label: "Results",
+          backgroundColor: 'rgb(255, 99, 132)',
+          borderColor: 'rgb(255, 99, 132)',
+          data: [poll1, poll2, poll3, poll4]
+        }],
+      },
+      // Configuration options go here
+      options: {
+        responsive: true
+
+      }
+    });
   </script>
 </body>
 

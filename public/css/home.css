@@ -337,6 +337,37 @@ a.poll-btn:focus {
   }
 }
 
+.polls-container {
+  font-size: 62.5%;
+  font-family: 'Raleway', sans-serif;
+  box-sizing: border-box;
+}
+
+label {
+  display: block;
+  padding: 5px;
+  font-size: 1.4em;
+  color: black;
+}
+
+fieldset.poll-bound {
+  margin: 80px auto;
+  width: 80vmin;
+  padding: 8px 15px 15px 15px;
+  display: block;
+  text-align: left;
+  /* IE 7 Requires This */
+}
+
+legend#poll-legend {
+  padding: 4px 6px 4px 6px;
+  border: 1px solid;
+  border-color: #00cdcf;
+  font-size: 2.0em;
+  color: black;
+  font-style: italic;
+}
+
 /* Footer */
 #footer {
   background-color: #f7f7f7;
