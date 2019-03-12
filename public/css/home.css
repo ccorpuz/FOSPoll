@@ -124,7 +124,7 @@ nav ul>li.dd {
 }
 
 .main-container {
-flex: 1 0 auto;
+  flex: 1 0 auto;
 }
 
 .page-title {
@@ -330,7 +330,6 @@ a.poll-btn:focus {
 }
 
 /* Change styles for span and cancel button on extra small screens */
-
 @media screen and (max-width: 300px) {
   .close-create-poll {
     display: block;
