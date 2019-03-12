@@ -57,7 +57,7 @@ function login(e, form) {
     .then(res => {
       if (res.ok) {
         //  Redirect on login
-        window.location.replace("/test.html");
+        window.location.replace("/home.html");
       } else {
         return res.json();
       }
