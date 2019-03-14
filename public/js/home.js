@@ -15,14 +15,14 @@ function getPolls() {
       if (!res.ok) {
         return res.status(404).json({ error: "Polls not found." });
       } else {
+        if (localStorage.getItem("id") === null) {
+          setTimeout(getPolls, 1000);
+        }
         return res.json();
       }
     })
     .then(allpolls => {
       allpolls.forEach(poll => {
-        if (localStorage.getItem("id") === null) {
-          setTimeout(getPolls, 1000);
-        }
         if (poll.user === localStorage.getItem("id")) {
           var new_poll = document.createElement("fieldset");
           new_poll.class = "poll-bound";
@@ -70,7 +70,6 @@ function getPolls() {
         }
       });
     });
-  //  Print polls
 }
 
 getPolls();
