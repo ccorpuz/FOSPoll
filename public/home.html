@@ -18,12 +18,21 @@
             Authorization: localStorage.getItem("token")
           })
         });
-        fetch(auth_request).then(res => {
-          if (!res.ok) {
-            alert("Please log in first.");
-            window.location.replace("/");
-          }
-        });
+        fetch(auth_request)
+          .then(res => {
+            if (!res.ok) {
+              alert("Please log in first.");
+              return window.location.replace("/");
+            } else {
+              return res.json();
+            }
+          })
+          .then(data => {
+            let details = Object.values(data);
+            localStorage.setItem("id", details[0]);
+            localStorage.setItem("name", details[1]);
+            localStorage.setItem("email", details[2]);
+          });
       }
       window.onload = auth;
     </script>
@@ -61,8 +70,8 @@
         <hr />
         <h3>My polls</h3>
         <!-- <label>No polls created yet</label> -->
-        <div class="polls-container">
-          <fieldset id="poll1" class="poll-bound">
+        <div id="polls_container" class="polls-container">
+          <!-- <fieldset id="poll1" class="poll-bound">
             <legend id="poll-legend">
               What is your JavaScript library of choice? -
               <strong>John Wick</strong>
@@ -95,7 +104,7 @@
               <input type="hidden" name="id" value="form1" />
               <input type="hidden" name="MM_insert" value="form1" />
             </form>
-          </fieldset>
+          </fieldset> -->
         </div>
       </div>
       <div id="modal-create-poll" class="modal-poll animate-create-poll">
