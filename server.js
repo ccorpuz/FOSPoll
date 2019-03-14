@@ -9,7 +9,7 @@ const polls = require("./routes/api/polls");
 
 const app = express();
 
-//  Using required resources
+//  Serve html pages
 app.use(express.static("public"));
 
 //  Passport middleware

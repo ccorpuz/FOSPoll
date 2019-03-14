@@ -58,15 +58,21 @@ function login(e, form) {
       if (res.ok) {
         //  Redirect on login
         window.location.replace("/home.html");
+        return res.json();
       } else {
         return res.json();
       }
     })
     .then(data => {
-      errors = Object.values(data);
-      errors.forEach(key => {
-        document.getElementById("err_label1").innerHTML += "\n" + key;
-      });
+      if ("token" in data) {
+        localStorage.setItem("token", data["token"]);
+      } else {
+        errors = Object.values(data);
+        document.getElementById("err_label1").innerHTML = "";
+        errors.forEach(key => {
+          document.getElementById("err_label1").innerHTML += "\n" + key;
+        });
+      }
     })
     .catch(err => console.log(err));
 }
