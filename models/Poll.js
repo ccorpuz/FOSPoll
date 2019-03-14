@@ -3,36 +3,26 @@ const Schema = mongoose.Schema;
 
 //  Create Schema
 const PollSchema = new Schema({
-  creator: {
-    type: String,
-    required: true
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "users"
   },
   question: {
     type: String,
     required: true
   },
-  option1: [
+  options: [
     {
-      name: String,
+      text: String,
       votes: Number
     }
   ],
-  option2: [
+  voters: [
     {
-      name: String,
-      votes: Number
-    }
-  ],
-  option3: [
-    {
-      name: String,
-      votes: Number
-    }
-  ],
-  option4: [
-    {
-      name: String,
-      votes: Number
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: "users"
+      }
     }
   ]
 });
