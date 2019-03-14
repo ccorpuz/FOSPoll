@@ -7,6 +7,9 @@ const router = express.Router();
 //  Load Poll model
 const Poll = require("../../models/Poll");
 
+//  Validation
+const validatePollInput = require("../../validation/poll");
+
 // @route   GET api/polls/test
 // @desc    Tests polls route
 // @access  Public
@@ -19,13 +22,38 @@ router.post(
   "/newpoll",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
+    const { errors, isValid } = validatePollInput(req.body);
+
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
+
+    //  Maybe create 3 different newPolls depending on if req.body.option 3 and 4 are empty?
     const newPoll = new Poll({
-      creator: req.user.email,
+      user: req.user.id,
       question: req.body.question,
-      option1: [{ name: req.body.option1, votes: 0 }],
-      option2: [{ name: req.body.option2, votes: 0 }],
-      option3: [{ name: req.body.option3, votes: 0 }],
-      option4: [{ name: req.body.option4, votes: 0 }]
+      options: [
+        {
+          text: req.body.option1,
+          votes: 0
+        },
+
+        {
+          text: req.body.option2,
+          votes: 0
+        },
+
+        {
+          text: req.body.option3,
+          votes: 0
+        },
+
+        {
+          text: req.body.option4,
+          votes: 0
+        }
+      ],
+      voters: []
     });
     newPoll
       .save()
@@ -34,21 +62,70 @@ router.post(
   }
 );
 
-// @route   GET api/polls/current
-// @desc    Get polls by the current user
+// @route   GET api/polls/:id
+// @desc    Get a poll by its id
+// @access  Public
+router.get("/:id", (req, res) => {
+  Poll.findById(req.params.id)
+    .then(post => res.json(post))
+    .catch(err => res.status(404).json(err));
+});
+
+// @route   GET api/polls/
+// @desc    Get all polls
+// @access  Public
+router.get("/", (req, res) => {
+  Poll.find()
+    .then(posts => res.json(posts))
+    .catch(err => res.status(404).json(err));
+});
+
+// @route   POST api/polls/vote
+// @desc    Vote on a poll
 // @access  Private
-router.get(
-  "/current",
+router.post(
+  "/vote",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Poll.find({ creator: req.user.email }, (err, docs) => {
-      if (err) {
-        console.log(err);
-      } else {
-        res.json(docs);
-      }
-    });
+    //  Find poll by ID
+    Poll.findById(req.body.poll)
+      .then(poll => {
+        //  Find option by ID
+        poll.options.forEach(option => {
+          if (option.id === req.body.option) {
+            option.votes++;
+          }
+        });
+
+        poll
+          .save()
+          .then(poll => res.json(poll))
+          .catch(err =>
+            res.status(400).json({ error: "Unsuccessful voting request." })
+          );
+      })
+      .catch(err => res.json(err));
   }
 );
 
+// @route   DELETE api/polls/:id
+// @desc    Delete a poll by ID
+// @access  Private
+router.delete(
+  "/:id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Poll.findById(req.params.id)
+      .then(poll => {
+        if (poll.user.toString() !== req.user.id) {
+          return res.status(401).json({ error: "You are not authorized." });
+        }
+
+        poll
+          .remove()
+          .then(() => res.json({ success: "Poll successfully deleted." }));
+      })
+      .catch(err => res.status(404).json({ error: "Post not found." }));
+  }
+);
 module.exports = router;
