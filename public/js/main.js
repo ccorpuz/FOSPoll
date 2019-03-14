@@ -29,6 +29,7 @@ function register(e, form) {
     })
     .then(data => {
       errors = Object.values(data);
+      document.getElementById("err_label").innerHTML = "";
       errors.forEach(key => {
         document.getElementById("err_label").innerHTML += "\n" + key;
       });

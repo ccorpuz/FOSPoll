@@ -1,5 +1,7 @@
 function logout() {
-  localStorage.removeItem("token");
+  localStorage.clear();
   alert("Successfully logged out!");
   window.location.replace("/");
 }
+
+function getPolls() {}
