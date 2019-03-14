@@ -88,23 +88,27 @@ router.post(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     //  Find poll by ID
-    Poll.findById(req.body.poll)
-      .then(poll => {
-        //  Find option by ID
-        poll.options.forEach(option => {
-          if (option.id === req.body.option) {
-            option.votes++;
-          }
-        });
+    Poll.findById(req.body.poll).then(poll => {
+      poll.voters.forEach(voter => {
+        if (voter.user.toString() === req.user.id) {
+          return res.status(400).json({ error: "You have already voted!" });
+        }
+      });
+      //  Find option by ID
+      poll.options.forEach(option => {
+        if (option.id === req.body.option) {
+          option.votes++;
+          poll.voters.unshift({ user: req.user.id });
+        }
+      });
 
-        poll
-          .save()
-          .then(poll => res.json(poll))
-          .catch(err =>
-            res.status(400).json({ error: "Unsuccessful voting request." })
-          );
-      })
-      .catch(err => res.json(err));
+      poll
+        .save()
+        .then(poll => res.json(poll))
+        .catch(err =>
+          res.status(400).json({ error: "Unsuccessful voting request." })
+        );
+    });
   }
 );
 
