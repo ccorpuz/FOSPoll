@@ -26,8 +26,7 @@ function getPolls() {
         if (poll.user === localStorage.getItem("id")) {
           var new_poll = document.createElement("fieldset");
           new_poll.class = "poll-bound";
-
-          new_poll.innerHTML = `<legend id="poll-legend">\
+          let new_HTML = `<legend id="poll-legend">\
               ${poll.question} -\
               <strong>${localStorage.getItem("name")}</strong>\
             </legend>\
@@ -42,20 +41,20 @@ function getPolls() {
               </label>`;
 
           if (poll.options[2].text !== undefined) {
-            new_poll.innerHTML += `<label>\
+            new_HTML += `<label>\
                 <input type="radio" name="Poll" id="${poll.options[2]._id}" />\
                 ${poll.options[2].text}
               </label>`;
           }
 
           if (poll.options[3].text !== undefined) {
-            new_poll.innerHTML += `<label>\
+            new_HTML += `<label>\
                 <input type="radio" name="Poll" id="${poll.options[3]._id}" />\
                 ${poll.options[3].text}
               </label>`;
           }
 
-          new_poll.innerHTML += `<input type="submit" name="submit" id="submit" value="Vote" />\
+          new_HTML += `<input type="submit" name="submit" id="submit" value="Vote" />\
           <button\
             type="button"\
             name="button"\
@@ -66,6 +65,8 @@ function getPolls() {
           <input type="hidden" name="id" value="form1" />\
           <input type="hidden" name="MM_insert" value="form1" />\
         </form>`;
+
+        new_poll.innerHTML = new_HTML;
 
           document.getElementById("polls_container").appendChild(new_poll);
         }
