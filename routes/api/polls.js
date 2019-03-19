@@ -1,5 +1,6 @@
 const express = require("express");
 const passport = require("passport");
+
 const router = express.Router();
 
 //  Load Poll model
@@ -57,6 +58,9 @@ router.post(
       .save()
       .then(poll => res.json(poll))
       .catch(err => console.log(err));
+
+    //  Notify client
+    io.emit("newpoll", res.json(poll));
   }
 );
 

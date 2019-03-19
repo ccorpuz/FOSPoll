@@ -39,4 +39,6 @@ app.use("/api/polls", polls);
 
 const port = process.env.PORT || 5000;
 
-app.listen(port, () => console.log(`Server running on port ${port}`));
+server = app.listen(port, () => console.log(`Server running on port ${port}`));
+
+var io = require("socket.io")(server);

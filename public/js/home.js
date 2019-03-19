@@ -6,7 +6,7 @@ function logout() {
 
 function getPolls() {
   //  Fetch polls
-  var get_polls = new Request("api/polls/", {
+  const get_polls = new Request("api/polls/", {
     method: "GET"
   });
 
@@ -74,4 +74,44 @@ function getPolls() {
 
 getPolls();
 
-function createPoll() {}
+function createPoll(e, form) {
+  e.preventDefault();
+  var new_question = document.getElementById("question").value;
+  var new_option1 = document.getElementById("option1").value;
+  var new_option2 = document.getElementById("option2").value;
+
+  var new_option3 = document.getElementById("option3").value;
+  var new_option4 = document.getElementById("option4").value;
+
+  newPoll = {
+    question: new_question,
+    option1: new_option1,
+    option2: new_option2,
+    option3: new_option3,
+    option4: new_option4
+  };
+
+  const get_polls = new Request("api/polls/newpoll", {
+    method: "POST",
+    body: JSON.stringify(newPoll),
+    headers: { "Content-Type": "application/json" }
+  });
+
+  fetch(get_polls)
+    .then((req, res) => {
+      if (res.ok) {
+        alert("Created new poll!");
+        window.location.replace("/home.html");
+      } else {
+        return res.json();
+      }
+    })
+    .then(data => {
+      errors = Object.values(data);
+      document.getElementById("create_error").innerHTML = "";
+      errors.forEach(key => {
+        document.getElementById("create_error").innerHTML += "\n" + key;
+      });
+    })
+    .catch(err => console.log(err));
+}
