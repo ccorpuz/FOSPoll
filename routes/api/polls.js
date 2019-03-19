@@ -58,9 +58,6 @@ router.post(
       .save()
       .then(poll => res.json(poll))
       .catch(err => console.log(err));
-
-    //  Notify client
-    io.emit("newpoll", res.json(poll));
   }
 );
 

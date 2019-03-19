@@ -26,6 +26,7 @@ function getPolls() {
         if (poll.user === localStorage.getItem("id")) {
           var new_poll = document.createElement("fieldset");
           new_poll.class = "poll-bound";
+
           new_poll.innerHTML = `<legend id="poll-legend">\
               ${poll.question} -\
               <strong>${localStorage.getItem("name")}</strong>\
@@ -80,8 +81,13 @@ function createPoll(e, form) {
   var new_option1 = document.getElementById("option1").value;
   var new_option2 = document.getElementById("option2").value;
 
-  var new_option3 = document.getElementById("option3").value;
-  var new_option4 = document.getElementById("option4").value;
+  if (document.getElementById("option3").value.length > 0) {
+    var new_option3 = document.getElementById("option3").value;
+  }
+
+  if (document.getElementById("option4").value.length > 0) {
+    var new_option4 = document.getElementById("option4").value;
+  }
 
   newPoll = {
     question: new_question,
@@ -91,14 +97,17 @@ function createPoll(e, form) {
     option4: new_option4
   };
 
-  const get_polls = new Request("api/polls/newpoll", {
+  const new_poll = new Request("api/polls/newpoll", {
     method: "POST",
     body: JSON.stringify(newPoll),
-    headers: { "Content-Type": "application/json" }
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: localStorage.getItem("token")
+    }
   });
 
-  fetch(get_polls)
-    .then((req, res) => {
+  fetch(new_poll)
+    .then(res => {
       if (res.ok) {
         alert("Created new poll!");
         window.location.replace("/home.html");
