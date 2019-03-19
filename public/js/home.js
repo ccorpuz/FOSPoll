@@ -73,3 +73,5 @@ function getPolls() {
 }
 
 getPolls();
+
+function createPoll() {}

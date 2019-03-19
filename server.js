@@ -7,6 +7,9 @@ const path = require("path");
 const users = require("./routes/api/users");
 const polls = require("./routes/api/polls");
 
+var http = require("http").Server(app);
+var io = require("socket.io")(http);
+
 const app = express();
 
 //  Serve html pages
