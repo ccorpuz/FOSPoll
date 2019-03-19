@@ -10,7 +10,10 @@
     <link rel="apple-touch-icon" href="icon.png" />
 
     <link rel="stylesheet" href="css/home.css" />
+    <script src="/socket.io/socket.io.js"></script>
     <script>
+      var socket = io();
+
       function auth() {
         var auth_request = new Request("api/users/current", {
           method: "GET",
@@ -108,7 +111,7 @@
         </div>
       </div>
       <div id="modal-create-poll" class="modal-poll animate-create-poll">
-        <form class="modal-content-poll" action="" method="POST">
+        <form class="modal-content-poll" onsubmit="createPoll(event, this)">
           <span
             onclick="document.getElementById('modal-create-poll').style.display='none'"
             class="close-create-poll"
@@ -118,6 +121,7 @@
           <div class="container-create-poll">
             <h1>Create your poll</h1>
             <hr />
+            <label id="create_error"></label>
             <label for="question"><b>Question</b></label>
             <input
               id="question"
