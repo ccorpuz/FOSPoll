@@ -39,7 +39,7 @@ function getPolls() {
 
           if (!voted) {
             //  Generate form
-            new_HTML += `<form action="" id="${
+            new_HTML += `<form onsubmit="vote(event, this)" id="${
               poll._id
             }" name="form1" method="POST">\
                   <label>\
@@ -183,6 +183,49 @@ function createPoll(e, form) {
       });
     })
     .catch(err => console.log(err));
+}
+
+function vote(e, form) {
+  e.preventDefault();
+  let option_id;
+  let options = form.elements["Poll"];
+
+  for (var i = 0; i < options.length; i++) {
+    if (options[i].checked) {
+      option_id = options[i].id;
+      break;
+    }
+  }
+
+  if (option_id === undefined) {
+    alert("Please select an option to vote!");
+  } else {
+    let newVote = {
+      poll: form.id,
+      option: option_id
+    };
+
+    var vote_request = new Request("api/polls/vote", {
+      method: "POST",
+      body: JSON.stringify(newVote),
+      headers: new Headers({
+        Authorization: localStorage.getItem("token"),
+        "Content-Type": "application/json"
+      })
+    });
+
+    fetch(vote_request)
+      .then(res => {
+        if (!res.ok) {
+          alert("You have already voted!");
+          return res.json();
+        } else {
+          //  Success! Emit something here
+          alert("Thank you for your vote!");
+        }
+      })
+      .then(err => console.log(err));
+  }
 }
 
 //  Main
