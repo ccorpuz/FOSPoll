@@ -70,8 +70,10 @@ function getPolls() {
                       poll.options[3]._id
                     }" />\
                     ${poll.options[3].text}
-                  </label><input type="submit" name="submit" id="submit" value="Vote" /></form>`;
+                  </label>`;
             }
+
+            new_HTML += `<input type="submit" name="submit" id="submit" value="Vote" /></form>`;
 
             new_poll.innerHTML = new_HTML;
             document.getElementById("polls_container").appendChild(new_poll);
