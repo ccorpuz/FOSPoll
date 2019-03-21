@@ -99,46 +99,6 @@
   </script>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
-  <script type="text/javascript">
-    var ctx = document.getElementById('myChart');
-    var pollName1, pollName2, pollName3, pollName4;
-    var poll1, poll2, poll3, poll4;
-
-    pollName1 = document.getElementById('Poll_0').value;
-    pollName2 = document.getElementById('Poll_1').value;
-    pollName3 = document.getElementById('Poll_2').value;
-    pollName4 = document.getElementById('Poll_3').value;
-
-
-
-    poll1 = 54;
-    poll2 = 60;
-    poll3 = 12;
-    poll4 = 16;
-
-
-
-    var chart = new Chart(ctx, {
-      // The type of chart we want to create
-      type: 'bar',
-
-      // The data for our dataset
-      data: {
-        labels: [pollName1, pollName2, pollName3, pollName4],
-        datasets: [{
-          label: "Results",
-          backgroundColor: 'rgb(255, 99, 132)',
-          borderColor: 'rgb(255, 99, 132)',
-          data: [poll1, poll2, poll3, poll4]
-        }],
-      },
-      // Configuration options go here
-      options: {
-        responsive: true
-
-      }
-    });
-  </script>
   <script src="./js/polls.js"></script>
 </body>
 

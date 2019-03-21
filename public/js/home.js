@@ -24,57 +24,114 @@ function getPolls() {
     .then(allpolls => {
       allpolls.forEach(poll => {
         if (poll.user === localStorage.getItem("id")) {
+          //  Check if user has voted
+          const voted = poll.voters.some(
+            item => item.user.toString() === localStorage.getItem("id")
+          );
+
           var new_poll = document.createElement("fieldset");
           new_poll.class = "poll-bound";
+
           let new_HTML = `<legend id="poll-legend">\
               ${poll.question} -\
               <strong>${localStorage.getItem("name")}</strong>\
-            </legend>\
-            <form action="" id="${poll._id}" name="form1" method="POST">\
-              <label>\
-                <input type="radio" name="Poll" id="${poll.options[0]._id}" />\
-                ${poll.options[0].text}
-              </label>\
-              <label>\
-                <input type="radio" name="Poll" id="${poll.options[1]._id}" />\
-                ${poll.options[1].text}
-              </label>`;
+            </legend>`;
 
-          if (poll.options[2].text !== undefined) {
-            new_HTML += `<label>\
-                <input type="radio" name="Poll" id="${poll.options[2]._id}" />\
-                ${poll.options[2].text}
-              </label>`;
+          if (!voted) {
+            //  Generate form
+            new_HTML += `<form action="" id="${
+              poll._id
+            }" name="form1" method="POST">\
+                  <label>\
+                    <input type="radio" name="Poll" id="${
+                      poll.options[0]._id
+                    }" />\
+                    ${poll.options[0].text}
+                  </label>\
+                  <label>\
+                    <input type="radio" name="Poll" id="${
+                      poll.options[1]._id
+                    }" />\
+                    ${poll.options[1].text}
+                  </label>`;
+
+            if (poll.options[2].text !== undefined) {
+              new_HTML += `<label>\
+                    <input type="radio" name="Poll" id="${
+                      poll.options[2]._id
+                    }" />\
+                    ${poll.options[2].text}
+                  </label>`;
+            }
+
+            if (poll.options[3].text !== undefined) {
+              new_HTML += `<label>\
+                    <input type="radio" name="Poll" id="${
+                      poll.options[3]._id
+                    }" />\
+                    ${poll.options[3].text}
+                  </label><input type="submit" name="submit" id="submit" value="Vote" /></form>`;
+            }
+
+            new_poll.innerHTML = new_HTML;
+            document.getElementById("polls_container").appendChild(new_poll);
+          } else {
+            //  Generate chart with id of chart+poll_id
+            new_HTML += `<canvas id="chart${
+              poll._id
+            }" aria-label="Shows poll results" role="img" />`;
+
+            new_poll.innerHTML = new_HTML;
+            document.getElementById("polls_container").appendChild(new_poll);
+
+            var ctx = document.getElementById("chart" + poll._id);
+
+            var new_labels = [poll.options[0].text, poll.options[1].text];
+
+            if (poll.options[2].text !== undefined) {
+              new_labels.push(poll.options[2].text);
+            }
+
+            if (poll.options[3].text !== undefined) {
+              new_labels.push(poll.options[3].text);
+            }
+
+            var new_votes = [poll.options[0].votes, poll.options[1].votes];
+
+            if (poll.options[2].text !== undefined) {
+              new_votes.push(poll.options[2].votes);
+            }
+
+            if (poll.options[3].text !== undefined) {
+              new_votes.push(poll.options[3].votes);
+            }
+
+            var chart = new Chart(ctx, {
+              // The type of chart we want to create
+              type: "bar",
+
+              // The data for our dataset
+              data: {
+                labels: new_labels,
+                datasets: [
+                  {
+                    label: "Results",
+                    backgroundColor: "rgb(255, 99, 132)",
+                    borderColor: "rgb(255, 99, 132)",
+                    data: new_votes
+                  }
+                ]
+              },
+              // Configuration options go here
+              options: {
+                responsive: true
+              }
+            });
           }
-
-          if (poll.options[3].text !== undefined) {
-            new_HTML += `<label>\
-                <input type="radio" name="Poll" id="${poll.options[3]._id}" />\
-                ${poll.options[3].text}
-              </label>`;
-          }
-
-          new_HTML += `<input type="submit" name="submit" id="submit" value="Vote" />\
-          <button\
-            type="button"\
-            name="button"\
-            onclick="document.getElementById(\'view-results\').style.display=\'block\'"\
-          >\
-            View results\
-          </button>\
-          <input type="hidden" name="id" value="form1" />\
-          <input type="hidden" name="MM_insert" value="form1" />\
-        </form>`;
-
-        new_poll.innerHTML = new_HTML;
-
-          document.getElementById("polls_container").appendChild(new_poll);
         }
       });
     });
 }
-
-getPolls();
 
 function createPoll(e, form) {
   e.preventDefault();
@@ -125,3 +182,6 @@ function createPoll(e, form) {
     })
     .catch(err => console.log(err));
 }
+
+//  Main
+getPolls();
