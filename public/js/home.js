@@ -24,6 +24,11 @@ function getPolls() {
     .then(allpolls => {
       allpolls.forEach(poll => {
         if (poll.user === localStorage.getItem("id")) {
+          //  Check if user has voted
+          const voted = poll.voters.some(
+            item => item.user.toString() === localStorage.getItem("id")
+          );
+
           var new_poll = document.createElement("fieldset");
           new_poll.class = "poll-bound";
           let new_HTML = `<legend id="poll-legend">\
@@ -54,27 +59,25 @@ function getPolls() {
               </label>`;
           }
 
-          new_HTML += `<input type="submit" name="submit" id="submit" value="Vote" />\
-          <button\
+          if (!voted) {
+            new_HTML += `<input type="submit" name="submit" id="submit" value="Vote" /></form>`;
+          } else {
+            new_HTML +=
+              '<button\
             type="button"\
             name="button"\
-            onclick="document.getElementById(\'view-results\').style.display=\'block\'"\
+            onclick=""\
           >\
             View results\
-          </button>\
-          <input type="hidden" name="id" value="form1" />\
-          <input type="hidden" name="MM_insert" value="form1" />\
-        </form>`;
+          </button>';
+          }
 
-        new_poll.innerHTML = new_HTML;
-
+          new_poll.innerHTML = new_HTML;
           document.getElementById("polls_container").appendChild(new_poll);
         }
       });
     });
 }
-
-getPolls();
 
 function createPoll(e, form) {
   e.preventDefault();
@@ -125,3 +128,6 @@ function createPoll(e, form) {
     })
     .catch(err => console.log(err));
 }
+
+//  Main
+getPolls();
