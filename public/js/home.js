@@ -4,6 +4,25 @@ function logout() {
   window.location.replace("/");
 }
 
+function deletePoll(value) {
+  const delete_request = new Request("api/polls/" + value, {
+    method: "DELETE",
+    headers: {
+      Authorization: localStorage.getItem("token")
+    }
+  });
+
+  fetch(delete_request).then(res => {
+    if (!res.ok) {
+      alert("Error deleting poll!");
+      return res.status(401).json("Unauthorized delete");
+    } else {
+      alert("Poll deleted!");
+      window.location.reload(true);
+    }
+  });
+}
+
 function getPolls() {
   //  Fetch polls
   const get_polls = new Request("api/polls/", {
@@ -75,15 +94,19 @@ function getPolls() {
             }
 
             new_HTML += `<input type="submit" name="submit" id="submit" value="Vote" /></form>`;
-
+            new_HTML += `<button type="button" value="${
+              poll._id
+            }" onclick="deletePoll(this.value)">Delete</button>`;
             new_poll.innerHTML = new_HTML;
             document.getElementById("polls_container").appendChild(new_poll);
           } else {
             //  Generate chart with id of chart+poll_id
             new_HTML += `<canvas id="chart${
               poll._id
-            }" aria-label="Shows poll results" role="img"/>`;
-
+            }" aria-label="Shows poll results" role="img"/></canvas>`;
+            new_HTML += `<button type="button" value="${
+              poll._id
+            }" onclick="deletePoll(this.value)">Delete</button>`;
             new_poll.innerHTML = new_HTML;
             document.getElementById("polls_container").appendChild(new_poll);
 
