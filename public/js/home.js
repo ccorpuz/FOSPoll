@@ -31,6 +31,7 @@ function getPolls() {
 
           var new_poll = document.createElement("fieldset");
           new_poll.class = "poll-bound";
+          new_poll.id = "fieldset" + poll._id;
 
           let new_HTML = `<legend id="poll-legend">\
               ${poll.question} -\
@@ -81,7 +82,7 @@ function getPolls() {
             //  Generate chart with id of chart+poll_id
             new_HTML += `<canvas id="chart${
               poll._id
-            }" aria-label="Shows poll results" role="img" />`;
+            }" aria-label="Shows poll results" role="img"/>`;
 
             new_poll.innerHTML = new_HTML;
             document.getElementById("polls_container").appendChild(new_poll);
@@ -118,15 +119,29 @@ function getPolls() {
                 datasets: [
                   {
                     label: "Results",
-                    backgroundColor: "rgb(255, 99, 132)",
-                    borderColor: "rgb(255, 99, 132)",
+                    backgroundColor: [
+                      "#27ae60",
+                      "#2980b9",
+                      "#e67e22",
+                      "#e74c3c"
+                    ],
+                    borderColor: "#2c3e50",
                     data: new_votes
                   }
                 ]
               },
               // Configuration options go here
               options: {
-                responsive: true
+                responsive: true,
+                scales: {
+                  yAxes: [
+                    {
+                      ticks: {
+                        stepSize: 1
+                      }
+                    }
+                  ]
+                }
               }
             });
           }
@@ -230,3 +245,80 @@ function vote(e, form) {
 
 //  Main
 getPolls();
+var socket = io();
+
+//  Update chart
+socket.on("newvote", data => {
+  //  Get poll
+  const get_poll = new Request("api/polls/" + data, {
+    method: "GET"
+  });
+
+  fetch(get_poll)
+    .then(res => {
+      return res.json();
+    })
+    .then(poll => {
+      //  Replace div
+      document.getElementById(
+        "fieldset" + poll._id
+      ).innerHTML = `<legend id="poll-legend">\
+      ${poll.question} -\
+      <strong>${localStorage.getItem("name")}</strong>\
+    </legend><canvas id="chart${
+      poll._id
+    }" aria-label="Shows poll results" role="img" />`;
+
+      //  Generate Chart
+      var ctx = document.getElementById("chart" + poll._id);
+
+      var new_labels = [poll.options[0].text, poll.options[1].text];
+
+      if (poll.options[2].text !== undefined) {
+        new_labels.push(poll.options[2].text);
+      }
+
+      if (poll.options[3].text !== undefined) {
+        new_labels.push(poll.options[3].text);
+      }
+
+      var new_votes = [poll.options[0].votes, poll.options[1].votes];
+
+      if (poll.options[2].text !== undefined) {
+        new_votes.push(poll.options[2].votes);
+      }
+
+      if (poll.options[3].text !== undefined) {
+        new_votes.push(poll.options[3].votes);
+      }
+
+      var chart = new Chart(ctx, {
+        type: "bar",
+
+        data: {
+          labels: new_labels,
+          datasets: [
+            {
+              label: "Results",
+              backgroundColor: ["#27ae60", "#2980b9", "#e67e22", "#e74c3c"],
+              borderColor: "#2c3e50",
+              data: new_votes
+            }
+          ]
+        },
+
+        options: {
+          responsive: true,
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  stepSize: 1
+                }
+              }
+            ]
+          }
+        }
+      });
+    });
+});

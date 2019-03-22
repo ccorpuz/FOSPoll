@@ -100,13 +100,14 @@ router.post(
           poll.voters.unshift({ user: req.user.id });
         }
       });
-
-      poll
-        .save()
-        .then(poll => res.json(poll))
-        .catch(err =>
-          res.status(400).json({ error: "Unsuccessful voting request." })
-        );
+      poll.save(err => {
+        if (err) {
+          res.status(400).json({ error: "Unsuccessful voting request." });
+        }
+        var io = req.app.get("socketio");
+        io.emit("newvote", req.body.poll);
+        return res.json();
+      });
     });
   }
 );

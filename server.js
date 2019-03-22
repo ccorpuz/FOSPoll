@@ -33,12 +33,14 @@ mongoose
 
 app.get("/", (req, res) => res.sendFile(path.join(__dirname + "/index.html")));
 
-// Use routes
-app.use("/api/users", users);
-app.use("/api/polls", polls);
-
 const port = process.env.PORT || 5000;
 
 server = app.listen(port, () => console.log(`Server running on port ${port}`));
 
 var io = require("socket.io")(server);
+
+// Use routes
+app.use("/api/users", users);
+app.use("/api/polls", polls);
+
+app.set("socketio", io);

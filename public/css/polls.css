@@ -15,7 +15,7 @@ html {
   border: 0;
   font-size: 100%;
   font: inherit;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   vertical-align: baseline;
   height: 100%;
 }
@@ -58,7 +58,7 @@ nav ul li {
 }
 
 /* Create a style for the first level items */
-nav>ul>li>a {
+nav > ul > li > a {
   color: white;
   display: block;
   line-height: 2.5em;
@@ -66,15 +66,15 @@ nav>ul>li>a {
   text-decoration: none;
 }
 
-nav li>ul {
+nav li > ul {
   display: none;
 }
 
-nav li>ul li {
+nav li > ul li {
   display: block;
 }
 
-nav li>ul li a {
+nav li > ul li a {
   color: white;
   display: block;
   line-height: 2em;
@@ -88,13 +88,13 @@ nav li:hover {
 }
 
 /* display the submenu on mouse over main menu item*/
-nav li:hover>ul {
+nav li:hover > ul {
   position: absolute;
   display: block;
   background-color: #666;
 }
 
-nav li:hover>ul>li:hover {
+nav li:hover > ul > li:hover {
   background-color: #00cdcf;
 }
 
@@ -107,11 +107,11 @@ nav #logout a:hover {
   background-color: red;
 }
 
-nav>ul>li>a:hover {
+nav > ul > li > a:hover {
   background-color: #00cdcf;
 }
 
-nav ul>li.dd {
+nav ul > li.dd {
   background-image: url("../img/white-down-arrow.png");
   background-size: 2.5vh;
   background-position: bottom;
@@ -132,7 +132,7 @@ nav ul>li.dd {
 
 .polls-container {
   font-size: 62.5%;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   box-sizing: border-box;
 }
 
@@ -161,7 +161,7 @@ legend#poll-legend {
   padding: 4px 6px 4px 6px;
   border: 1px solid;
   border-color: #00cdcf;
-  font-size: 2.0em;
+  font-size: 2em;
   color: black;
   font-style: italic;
 }
@@ -177,7 +177,7 @@ legend#poll-legend {
 
 #footer:before {
   background-color: #ddd;
-  content: '';
+  content: "";
   height: 1px;
   left: 30%;
   position: absolute;
