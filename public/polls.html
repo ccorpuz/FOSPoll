@@ -11,6 +11,33 @@
   <link rel="apple-touch-icon" href="icon.png" />
 
   <link rel="stylesheet" href="css/polls.css" />
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    function auth() {
+      var auth_request = new Request("api/users/current", {
+        method: "GET",
+        headers: new Headers({
+          Authorization: localStorage.getItem("token")
+        })
+      });
+      fetch(auth_request)
+        .then(res => {
+          if (!res.ok) {
+            alert("Please log in first.");
+            return window.location.replace("/");
+          } else {
+            return res.json();
+          }
+        })
+        .then(data => {
+          let details = Object.values(data);
+          localStorage.setItem("id", details[0]);
+          localStorage.setItem("name", details[1]);
+          localStorage.setItem("email", details[2]);
+        });
+    }
+    window.onload = auth;
+  </script>
 </head>
 
 <body>
@@ -31,60 +58,8 @@
     <div class="page-title">
       <h1>Global polls</h1>
       <label>View and vote on other polls<label>
-    </div>
-    <div class="polls-container">
-      <fieldset id="poll1" class="poll-bound">
-        <legend id="poll-legend">What is your JavaScript library of choice? - <strong>John Wick</strong></legend>
-        <form action="" id="form1" name="form1" method="POST">
-          <label>
-            <input type="radio" name="Poll" value="mootools" id="Poll_0" />
-            Mootools
-          </label>
-          <label>
-            <input type="radio" name="Poll" value="prototype" id="Poll_1" />
-            Prototype
-          </label>
-          <label>
-            <input type="radio" name="Poll" value="jquery" id="Poll_2" />
-            jQuery
-          </label>
-          <label>
-            <input type="radio" name="Poll" value="spry" id="Poll_3" />
-            Spry
-          </label>
-          <input type="submit" name="submit" id="submit" value="Vote" />
-          <button type="button" name="button" onclick="document.getElementById('view-results').style.display='block'">View results</button>
-          <input type="hidden" name="id" value="form1" />
-          <input type="hidden" name="MM_insert" value="form1" />
-        </form>
-      </fieldset>
-      <fieldset id="view-results" class="results-poll1 poll-bound">
-        <canvas id="myChart" aria-label="Shows poll results" role="img">
-          <p>Poll results chart<p>
-        </canvas>
-      </fieldset>
-      <fieldset class="poll-bound">
-        <legend id="poll-legend">What is your JavaScript library of choice?- <strong>Mohawk</strong></legend>
-        <form action="" id="form2" name="form2" method="POST">
-          <label>
-            <input type="radio" name="Poll" value="mootools" id="Poll_0" />
-            Mootools
-          </label>
-          <label>
-            <input type="radio" name="Poll" value="prototype" id="Poll_1" />
-            Prototype
-          </label>
-          <label>
-            <input type="radio" name="Poll" value="jquery" id="Poll_2" />
-            jQuery
-          </label>
-          <label>
-            <input type="radio" name="Poll" value="spry" id="Poll_3" />
-            Spry
-          </label>
-          <input type="submit" name="submit" id="submit" value="Vote" />
-        </form>
-      </fieldset>
+      <div id="polls_container" class="polls-container">
+      </div>
     </div>
   <!-- Footer -->
   <footer id="footer">
