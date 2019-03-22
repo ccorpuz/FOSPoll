@@ -4,40 +4,219 @@ function logout() {
   window.location.replace("/");
 }
 
-function get_chart() {
-  var ctx = document.getElementById("myChart");
-  var pollName1, pollName2, pollName3, pollName4;
-  var poll1, poll2, poll3, poll4;
-
-  pollName1 = document.getElementById("Poll_0").value;
-  pollName2 = document.getElementById("Poll_1").value;
-  pollName3 = document.getElementById("Poll_2").value;
-  pollName4 = document.getElementById("Poll_3").value;
-
-  poll1 = 54;
-  poll2 = 60;
-  poll3 = 12;
-  poll4 = 16;
-
-  var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: "bar",
-
-    // The data for our dataset
-    data: {
-      labels: [pollName1, pollName2, pollName3, pollName4],
-      datasets: [
-        {
-          label: "Results",
-          backgroundColor: "rgb(255, 99, 132)",
-          borderColor: "rgb(255, 99, 132)",
-          data: [poll1, poll2, poll3, poll4]
-        }
-      ]
-    },
-    // Configuration options go here
-    options: {
-      responsive: true
-    }
+function getPolls() {
+  //  Fetch polls
+  const get_polls = new Request("api/polls/", {
+    method: "GET"
   });
+
+  fetch(get_polls)
+    .then(res => {
+      if (!res.ok) {
+        return res.status(404).json({ error: "Polls not found." });
+      } else {
+        if (localStorage.getItem("id") === null) {
+          setTimeout(getPolls, 1000);
+        }
+        return res.json();
+      }
+    })
+    .then(allpolls => {
+      allpolls.forEach(poll => {
+        //  Check if user has voted
+        const voted = poll.voters.some(
+          item => item.user.toString() === localStorage.getItem("id")
+        );
+
+        var new_poll = document.createElement("fieldset");
+        new_poll.class = "poll-bound";
+        new_poll.id = "fieldset" + poll._id;
+
+        let new_HTML = `<legend id="poll-legend">\
+              ${poll.question} -\
+              <strong>${localStorage.getItem("name")}</strong>\
+            </legend>`;
+
+        if (!voted) {
+          //  Generate form
+          new_HTML += `<form onsubmit="vote(event, this)" id="${
+            poll._id
+          }" name="form1" method="POST">\
+                  <label>\
+                    <input type="radio" name="Poll" id="${
+                      poll.options[0]._id
+                    }" />\
+                    ${poll.options[0].text}
+                  </label>\
+                  <label>\
+                    <input type="radio" name="Poll" id="${
+                      poll.options[1]._id
+                    }" />\
+                    ${poll.options[1].text}
+                  </label>`;
+
+          if (poll.options[2].text !== undefined) {
+            new_HTML += `<label>\
+                    <input type="radio" name="Poll" id="${
+                      poll.options[2]._id
+                    }" />\
+                    ${poll.options[2].text}
+                  </label>`;
+          }
+
+          if (poll.options[3].text !== undefined) {
+            new_HTML += `<label>\
+                    <input type="radio" name="Poll" id="${
+                      poll.options[3]._id
+                    }" />\
+                    ${poll.options[3].text}
+                  </label>`;
+          }
+
+          new_HTML += `<input type="submit" name="submit" id="submit" value="Vote" /></form>`;
+          new_poll.innerHTML = new_HTML;
+          document.getElementById("polls_container").appendChild(new_poll);
+        } else {
+          //  Generate chart with id of chart+poll_id
+          new_HTML += `<canvas id="chart${
+            poll._id
+          }" aria-label="Shows poll results" role="img"/></canvas>`;
+          new_poll.innerHTML = new_HTML;
+          document.getElementById("polls_container").appendChild(new_poll);
+
+          var ctx = document.getElementById("chart" + poll._id);
+
+          var new_labels = [poll.options[0].text, poll.options[1].text];
+
+          if (poll.options[2].text !== undefined) {
+            new_labels.push(poll.options[2].text);
+          }
+
+          if (poll.options[3].text !== undefined) {
+            new_labels.push(poll.options[3].text);
+          }
+
+          var new_votes = [poll.options[0].votes, poll.options[1].votes];
+
+          if (poll.options[2].text !== undefined) {
+            new_votes.push(poll.options[2].votes);
+          }
+
+          if (poll.options[3].text !== undefined) {
+            new_votes.push(poll.options[3].votes);
+          }
+
+          var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: "bar",
+
+            // The data for our dataset
+            data: {
+              labels: new_labels,
+              datasets: [
+                {
+                  label: "Results",
+                  backgroundColor: ["#27ae60", "#2980b9", "#e67e22", "#e74c3c"],
+                  borderColor: "#2c3e50",
+                  data: new_votes
+                }
+              ]
+            },
+            // Configuration options go here
+            options: {
+              responsive: true,
+              scales: {
+                yAxes: [
+                  {
+                    ticks: {
+                      stepSize: 1
+                    }
+                  }
+                ]
+              }
+            }
+          });
+        }
+      });
+    });
 }
+
+// Main
+getPolls();
+var socket = io();
+
+//  Update chart
+socket.on("newvote", data => {
+  //  Get poll
+  const get_poll = new Request("api/polls/" + data, {
+    method: "GET"
+  });
+
+  fetch(get_poll)
+    .then(res => {
+      return res.json();
+    })
+    .then(poll => {
+      //  Replace div
+      document.getElementById(
+        "fieldset" + poll._id
+      ).innerHTML = `<legend id="poll-legend">\
+      ${poll.question} -\
+      <strong>${localStorage.getItem("name")}</strong>\
+    </legend><canvas id="chart${
+      poll._id
+    }" aria-label="Shows poll results" role="img" />`;
+
+      //  Generate Chart
+      var ctx = document.getElementById("chart" + poll._id);
+
+      var new_labels = [poll.options[0].text, poll.options[1].text];
+
+      if (poll.options[2].text !== undefined) {
+        new_labels.push(poll.options[2].text);
+      }
+
+      if (poll.options[3].text !== undefined) {
+        new_labels.push(poll.options[3].text);
+      }
+
+      var new_votes = [poll.options[0].votes, poll.options[1].votes];
+
+      if (poll.options[2].text !== undefined) {
+        new_votes.push(poll.options[2].votes);
+      }
+
+      if (poll.options[3].text !== undefined) {
+        new_votes.push(poll.options[3].votes);
+      }
+
+      var chart = new Chart(ctx, {
+        type: "bar",
+
+        data: {
+          labels: new_labels,
+          datasets: [
+            {
+              label: "Results",
+              backgroundColor: ["#27ae60", "#2980b9", "#e67e22", "#e74c3c"],
+              borderColor: "#2c3e50",
+              data: new_votes
+            }
+          ]
+        },
+
+        options: {
+          responsive: true,
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  stepSize: 1
+                }
+              }
+            ]
+          }
+        }
+      });
+    });
+});
