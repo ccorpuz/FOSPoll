@@ -10,8 +10,8 @@ module.exports = function validatePollInput(data) {
 
   data.option2 = !isEmpty(data.option2) ? data.option2 : "";
 
-  if (!Validator.isLength(data.question, { min: 1, max: 20 })) {
-    errors.question = "The question should be between 1 and 20 characters";
+  if (!Validator.isLength(data.question, { min: 1, max: 50 })) {
+    errors.question = "The question should be between 1 and 50 characters";
   }
 
   if (Validator.isEmpty(data.question)) {

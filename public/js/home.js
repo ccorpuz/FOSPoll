@@ -230,3 +230,62 @@ function vote(e, form) {
 
 //  Main
 getPolls();
+var socket = io();
+
+//  Update chart
+socket.on("newvote", data => {
+  //  Get poll
+  const get_poll = new Request("api/polls/" + data, {
+    method: "GET"
+  });
+
+  fetch(get_poll)
+    .then(res => {
+      return res.json();
+    })
+    .then(poll => {
+      //  Do stuff with poll
+
+      var ctx = document.getElementById("chart" + poll._id);
+
+      var new_labels = [poll.options[0].text, poll.options[1].text];
+
+      if (poll.options[2].text !== undefined) {
+        new_labels.push(poll.options[2].text);
+      }
+
+      if (poll.options[3].text !== undefined) {
+        new_labels.push(poll.options[3].text);
+      }
+
+      var new_votes = [poll.options[0].votes, poll.options[1].votes];
+
+      if (poll.options[2].text !== undefined) {
+        new_votes.push(poll.options[2].votes);
+      }
+
+      if (poll.options[3].text !== undefined) {
+        new_votes.push(poll.options[3].votes);
+      }
+
+      var chart = new Chart(ctx, {
+        type: "bar",
+
+        data: {
+          labels: new_labels,
+          datasets: [
+            {
+              label: "Results",
+              backgroundColor: "rgb(255, 99, 132)",
+              borderColor: "rgb(255, 99, 132)",
+              data: new_votes
+            }
+          ]
+        },
+
+        options: {
+          responsive: true
+        }
+      });
+    });
+});
