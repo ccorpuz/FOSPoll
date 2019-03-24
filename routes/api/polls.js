@@ -27,9 +27,9 @@ router.post(
       return res.status(400).json(errors);
     }
 
-    //  Maybe create 3 different newPolls depending on if req.body.option 3 and 4 are empty?
     const newPoll = new Poll({
       user: req.user.id,
+      user_name: req.user.name,
       question: req.body.question,
       options: [
         {
