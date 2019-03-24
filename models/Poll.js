@@ -7,6 +7,10 @@ const PollSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "users"
   },
+  user_name: {
+    type: String,
+    required: true
+  },
   question: {
     type: String,
     required: true

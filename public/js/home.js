@@ -188,6 +188,7 @@ function createPoll(e, form) {
   }
 
   newPoll = {
+    user_name: localStorage.getItem("name"),
     question: new_question,
     option1: new_option1,
     option2: new_option2,
@@ -290,7 +291,7 @@ socket.on("newvote", data => {
       <strong>${localStorage.getItem("name")}</strong>\
     </legend><canvas id="chart${
       poll._id
-    }" aria-label="Shows poll results" role="img" />`;
+    }" aria-label="Shows poll results" role="img"/>`;
 
       //  Generate Chart
       var ctx = document.getElementById("chart" + poll._id);

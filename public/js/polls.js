@@ -34,7 +34,7 @@ function getPolls() {
 
         let new_HTML = `<legend id="poll-legend">\
               ${poll.question} -\
-              <strong>${localStorage.getItem("name")}</strong>\
+              <strong>${poll.user_name}</strong>\
             </legend>`;
 
         if (!voted) {
@@ -205,7 +205,7 @@ socket.on("newvote", data => {
         "fieldset" + poll._id
       ).innerHTML = `<legend id="poll-legend">\
       ${poll.question} -\
-      <strong>${localStorage.getItem("name")}</strong>\
+      <strong>${poll.user_name}</strong>\
     </legend><canvas id="chart${
       poll._id
     }" aria-label="Shows poll results" role="img" />`;
