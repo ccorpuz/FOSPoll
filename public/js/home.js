@@ -93,10 +93,10 @@ function getPolls() {
                   </label>`;
             }
 
-            new_HTML += `<input type="submit" name="submit" id="submit" value="Vote" /></form>`;
+            new_HTML += `<input type="submit" name="submit" id="submit" value="Vote" class="voteButton"/></form>`;
             new_HTML += `<button type="button" value="${
               poll._id
-            }" onclick="deletePoll(this.value)">Delete</button>`;
+            }" onclick="deletePoll(this.value)" class="deleteButton">Delete</button>`;
             new_poll.innerHTML = new_HTML;
             document.getElementById("polls_container").appendChild(new_poll);
           } else {
@@ -106,7 +106,7 @@ function getPolls() {
             }" aria-label="Shows poll results" role="img"/></canvas>`;
             new_HTML += `<button type="button" value="${
               poll._id
-            }" onclick="deletePoll(this.value)">Delete</button>`;
+            }" onclick="deletePoll(this.value)" class="deleteButton">Delete</button>`;
             new_poll.innerHTML = new_HTML;
             document.getElementById("polls_container").appendChild(new_poll);
 
@@ -141,21 +141,23 @@ function getPolls() {
                 labels: new_labels,
                 datasets: [
                   {
-                    label: "Results",
+                    label: "# of Votes",
+                    data: new_votes,
                     backgroundColor: [
                       "#27ae60",
                       "#2980b9",
                       "#e67e22",
                       "#e74c3c"
                     ],
-                    borderColor: "#2c3e50",
-                    data: new_votes
+                    borderColor: "#2c3e50"
+
                   }
                 ]
               },
               // Configuration options go here
               options: {
                 responsive: true,
+                maintainAspectRatio: false,
                 scales: {
                   yAxes: [
                     {
@@ -332,6 +334,7 @@ socket.on("newvote", data => {
 
         options: {
           responsive: true,
+          maintainAspectRatio: false,
           scales: {
             yAxes: [
               {

@@ -73,7 +73,7 @@ function getPolls() {
                   </label>`;
           }
 
-          new_HTML += `<input type="submit" name="submit" id="submit" value="Vote" /></form>`;
+          new_HTML += `<input type="submit" name="submit" id="submit" value="Vote" class="voteButton"/></form>`;
           new_poll.innerHTML = new_HTML;
           document.getElementById("polls_container").appendChild(new_poll);
         } else {
@@ -125,6 +125,7 @@ function getPolls() {
             // Configuration options go here
             options: {
               responsive: true,
+              maintainAspectRatio: false,
               scales: {
                 yAxes: [
                   {
@@ -250,6 +251,7 @@ socket.on("newvote", data => {
 
         options: {
           responsive: true,
+          maintainAspectRatio: false,
           scales: {
             yAxes: [
               {
