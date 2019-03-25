@@ -1,5 +1,5 @@
 @import url(font-awesome.min.css);
-@import url("http://fonts.googleapis.com/css?family=Raleway:500,700");
+@import url("//fonts.googleapis.com/css?family=Raleway:500,700");
 
 /*
 	Typify by TEMPLATED
@@ -12,11 +12,21 @@ html {
   border: 0;
   font-size: 100%;
   font: inherit;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   vertical-align: baseline;
 }
 
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
   display: block;
 }
 
@@ -29,7 +39,9 @@ body {
 }
 
 /* Box Model */
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -129,20 +141,21 @@ header p {
   text-transform: uppercase;
 }
 
-header h2, header h3 {
+header h2,
+header h3 {
   display: inline-block;
   padding-bottom: 0.4em;
   border-bottom-style: double;
   border-bottom-width: 4px;
 }
 
-header h2+p {
+header h2 + p {
   font-size: 1.25em;
   margin-top: -0.5em;
   line-height: 1.5em;
 }
 
-header h3+p {
+header h3 + p {
   font-size: 1.1em;
   line-height: 1.5em;
 }
@@ -169,7 +182,8 @@ header.major {
   }
 }
 
-header h2, header h3 {
+header h2,
+header h3 {
   border-bottom-color: #e3e3e3;
 }
 
@@ -242,12 +256,12 @@ header p {
   position: relative;
 }
 
-.wrapper>.inner {
+.wrapper > .inner {
   margin: 0 auto;
   width: 65em;
 }
 
-.wrapper>.inner.narrow {
+.wrapper > .inner.narrow {
   width: 35em;
 }
 
@@ -256,7 +270,7 @@ header p {
     padding: 5em 0 3em 0;
   }
 
-  .wrapper>.inner {
+  .wrapper > .inner {
     width: 60em;
   }
 }
@@ -266,7 +280,7 @@ header p {
     padding: 4em 2em 2em 2em;
   }
 
-  .wrapper>.inner {
+  .wrapper > .inner {
     width: 100%;
   }
 }
@@ -276,7 +290,7 @@ header p {
     padding: 3em 1.5em 1em 1.5em;
   }
 
-  .wrapper>.inner.narrow {
+  .wrapper > .inner.narrow {
     width: 80%;
   }
 }
@@ -286,7 +300,7 @@ header p {
     padding: 2em 1em 0.1em 1em;
   }
 
-  .wrapper>.inner.narrow {
+  .wrapper > .inner.narrow {
     width: 100%;
   }
 }
@@ -301,7 +315,7 @@ header p {
 
 #footer:before {
   background-color: #ddd;
-  content: '';
+  content: "";
   height: 1px;
   left: 30%;
   position: absolute;
@@ -353,7 +367,7 @@ header p {
 }
 
 button {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -368,7 +382,7 @@ button:hover {
 }
 
 .main-signup-btn {
-	background-color: #F44336;
+  background-color: #f44336;
 }
 
 /* SIGN UP */
@@ -399,7 +413,8 @@ button:hover {
 }
 
 /* Float cancel and signup buttons and add an equal width */
-.cancelbtn, .signupbtn {
+.cancelbtn,
+.signupbtn {
   float: left;
   width: 50%;
 }
@@ -466,7 +481,7 @@ hr {
 
 .animate-signup {
   -webkit-animation: animatezoom 0.6s;
-  animation: animatezoom 0.6s
+  animation: animatezoom 0.6s;
 }
 
 /* Clear floats */
@@ -478,13 +493,14 @@ hr {
 
 /* Change styles for cancel button and signup button on extra small screens */
 @media screen and (max-width: 300px) {
-  .cancelbtn, .signupbtn {
+  .cancelbtn,
+  .signupbtn {
     width: 100%;
   }
 }
 
 .signupbtn {
-	background-color: #4CAF50;
+  background-color: #4caf50;
 }
 
 /* LOGIN */
@@ -571,21 +587,21 @@ hr {
 
 @-webkit-keyframes animatezoom {
   from {
-    -webkit-transform: scale(0)
+    -webkit-transform: scale(0);
   }
 
   to {
-    -webkit-transform: scale(1)
+    -webkit-transform: scale(1);
   }
 }
 
 @keyframes animatezoom {
   from {
-    transform: scale(0)
+    transform: scale(0);
   }
 
   to {
-    transform: scale(1)
+    transform: scale(1);
   }
 }
 
