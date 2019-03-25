@@ -1,6 +1,6 @@
 @import url(font-awesome.min.css);
-@import url("http://fonts.googleapis.com/css?family=Raleway:500,700");
-@import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:700';
+@import url("//fonts.googleapis.com/css?family=Raleway:500,700");
+@import "//fonts.googleapis.com/css?family=Source+Sans+Pro:700";
 
 *,
 *::before,
@@ -16,7 +16,7 @@ html {
   border: 0;
   font-size: 100%;
   font: inherit;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   vertical-align: baseline;
   height: 100%;
 }
@@ -59,7 +59,7 @@ nav ul li {
 }
 
 /* Create a style for the first level items */
-nav>ul>li>a {
+nav > ul > li > a {
   color: white;
   display: block;
   line-height: 2.5em;
@@ -67,15 +67,15 @@ nav>ul>li>a {
   text-decoration: none;
 }
 
-nav li>ul {
+nav li > ul {
   display: none;
 }
 
-nav li>ul li {
+nav li > ul li {
   display: block;
 }
 
-nav li>ul li a {
+nav li > ul li a {
   color: white;
   display: block;
   line-height: 2em;
@@ -89,13 +89,13 @@ nav li:hover {
 }
 
 /* display the submenu on mouse over main menu item*/
-nav li:hover>ul {
+nav li:hover > ul {
   position: absolute;
   display: block;
   background-color: #666;
 }
 
-nav li:hover>ul>li:hover {
+nav li:hover > ul > li:hover {
   background-color: #00cdcf;
 }
 
@@ -108,7 +108,7 @@ nav #logout a:hover {
   background-color: red;
 }
 
-nav>ul>li>a:hover {
+nav > ul > li > a:hover {
   background-color: #00cdcf;
 }
 
@@ -117,7 +117,7 @@ nav>ul>li>a:hover {
 }
 
 @media screen and (max-width: 600px) {
-  .nav-bar-class>ul>li:not(:last-child) {
+  .nav-bar-class > ul > li:not(:last-child) {
     display: none;
   }
 
@@ -149,7 +149,7 @@ nav>ul>li>a:hover {
     right: 0;
   }
 
-  .nav-bar-class.responsive ul>li {
+  .nav-bar-class.responsive ul > li {
     display: block;
   }
 }
@@ -177,7 +177,7 @@ nav>ul>li>a:hover {
 }
 
 a.poll-btn {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   color: #00cdcf;
   text-decoration: none;
   -webkit-transition: 0.3s all ease;
@@ -185,11 +185,11 @@ a.poll-btn {
 }
 
 a.poll-btn:hover {
-  color: #FFF;
+  color: #fff;
 }
 
 a.poll-btn:focus {
-  color: #FFF;
+  color: #fff;
 }
 
 .poll-btn {
@@ -217,7 +217,7 @@ a.poll-btn:focus {
   right: 50%;
   bottom: 0;
   opacity: 0;
-  content: '';
+  content: "";
   background-color: #00cdcf;
   z-index: -2;
 }
@@ -303,7 +303,7 @@ a.poll-btn:focus {
 }
 
 .create-btn {
-  background-color: #3F51B5;
+  background-color: #3f51b5;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -311,7 +311,7 @@ a.poll-btn:focus {
   cursor: pointer;
   width: 100%;
   opacity: 0.8;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
 }
 
 .create-btn:hover {
@@ -342,21 +342,21 @@ a.poll-btn:focus {
 
 @-webkit-keyframes animatezoom {
   from {
-    -webkit-transform: scale(0)
+    -webkit-transform: scale(0);
   }
 
   to {
-    -webkit-transform: scale(1)
+    -webkit-transform: scale(1);
   }
 }
 
 @keyframes animatezoom {
   from {
-    transform: scale(0)
+    transform: scale(0);
   }
 
   to {
-    transform: scale(1)
+    transform: scale(1);
   }
 }
 
@@ -370,7 +370,7 @@ a.poll-btn:focus {
 
 .polls-container {
   font-size: 62.5%;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   box-sizing: border-box;
   margin-bottom: 20px;
 }
@@ -400,7 +400,7 @@ legend#poll-legend {
   border: 1px solid;
   border-color: #00cdcf;
   border-radius: 5px;
-  font-size: 2.0em;
+  font-size: 2em;
   color: black;
   font-style: italic;
 }
@@ -474,7 +474,7 @@ legend#poll-legend {
 
 #footer:before {
   background-color: #ddd;
-  content: '';
+  content: "";
   height: 1px;
   left: 30%;
   position: absolute;

@@ -1,95 +1,105 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>FOS Polling - Polls</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<head>
-  <meta charset="utf-8">
-  <title>FOS Polling - Polls</title>
-  <meta name="description" content="" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-
-  <link rel="stylesheet" href="css/polls.css" />
-  <script src="/socket.io/socket.io.js"></script>
-  <script>
-    function auth() {
-      var auth_request = new Request("api/users/current", {
-        method: "GET",
-        headers: new Headers({
-          Authorization: localStorage.getItem("token")
-        })
-      });
-      fetch(auth_request)
-        .then(res => {
-          if (!res.ok) {
-            alert("Please log in first.");
-            return window.location.replace("/");
-          } else {
-            return res.json();
-          }
-        })
-        .then(data => {
-          let details = Object.values(data);
-          localStorage.setItem("id", details[0]);
-          localStorage.setItem("name", details[1]);
-          localStorage.setItem("email", details[2]);
+    <link rel="stylesheet" href="css/polls.css" />
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      function auth() {
+        var auth_request = new Request("api/users/current", {
+          method: "GET",
+          headers: new Headers({
+            Authorization: localStorage.getItem("token")
+          })
         });
-    }
-    window.onload = auth;
-  </script>
-</head>
+        fetch(auth_request)
+          .then(res => {
+            if (!res.ok) {
+              alert("Please log in first.");
+              return window.location.replace("/");
+            } else {
+              return res.json();
+            }
+          })
+          .then(data => {
+            let details = Object.values(data);
+            localStorage.setItem("id", details[0]);
+            localStorage.setItem("name", details[1]);
+            localStorage.setItem("email", details[2]);
+          });
+      }
+      window.onload = auth;
+    </script>
+  </head>
 
-<body>
-  <div class="main-container">
-    <nav class="nav-bar-class" id="nav-bar-id">
-      <h2>FOS Polling</h2>
-      <ul>
-        <li>
-          <a href="home.html">Home</a>
-        </li>
-        <li><a href="polls.html">Polls</a></li>
-        <li><a href="about.html">About</a></li>
-        <li id="logout"><a href="#logout" onclick="logout()">Log out</a></li>
-        <li><a href="javascript:void(0);" class="icon" onclick="navFunc()">
-            <i class="fa fa-bars"></i>
-          </a></li>
-      </ul>
-    </nav>
-    <div class="page-title">
-      <h1>Global polls</h1>
-      <label>View and vote on other polls</label>
-      <div id="polls_container" class="polls-container">
+  <body>
+    <div class="main-container">
+      <nav class="nav-bar-class" id="nav-bar-id">
+        <h2>FOS Polling</h2>
+        <ul>
+          <li>
+            <a href="home.html">Home</a>
+          </li>
+          <li><a href="polls.html">Polls</a></li>
+          <li><a href="about.html">About</a></li>
+          <li id="logout"><a href="#logout" onclick="logout()">Log out</a></li>
+          <li>
+            <a href="javascript:void(0);" class="icon" onclick="navFunc()">
+              <i class="fa fa-bars"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="page-title">
+        <h1>Global polls</h1>
+        <label>View and vote on other polls</label>
+        <div id="polls_container" class="polls-container"></div>
       </div>
     </div>
-  </div>
-  <!-- Footer -->
-  <footer id="footer">
-    <div class="copyright">
-      &#169; 2019, Freedom Of Speech Polling
-      <p>
-        <a href="http://jigsaw.w3.org/css-validator/check/referer">
-          <img style="border:0;width:88px;height:31px" src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="Valid CSS!" />
-        </a>
-      </p>
-    </div>
-  </footer>
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
-  <script src="./js/polls.js"></script>
-  <script>
-    function navFunc() {
-      var x = document.getElementById("nav-bar-id");
-      if (x.className === "nav-bar-class") {
-        x.className += " responsive";
-      } else {
-        x.className = "nav-bar-class";
+    <!-- Footer -->
+    <footer id="footer">
+      <div class="copyright">
+        &#169; 2019, Freedom Of Speech Polling
+        <p>
+          <a href="//jigsaw.w3.org/css-validator/check/referer">
+            <img
+              style="border:0;width:88px;height:31px"
+              src="//jigsaw.w3.org/css-validator/images/vcss-blue"
+              alt="Valid CSS!"
+            />
+          </a>
+        </p>
+      </div>
+    </footer>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+    <script src="./js/polls.js"></script>
+    <script>
+      function navFunc() {
+        var x = document.getElementById("nav-bar-id");
+        if (x.className === "nav-bar-class") {
+          x.className += " responsive";
+        } else {
+          x.className = "nav-bar-class";
+        }
       }
-    }
-  </script>
-</body>
-
+    </script>
+  </body>
 </html>
