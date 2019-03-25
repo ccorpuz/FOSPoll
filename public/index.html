@@ -1,24 +1,27 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>FOS Polling</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 
-    <link rel="manifest" href="site.webmanifest" />
-    <link rel="apple-touch-icon" href="icon.png" />
-    <!-- Place favicon.ico in the root directory -->
+<head>
+  <meta charset="utf-8" />
+  <title>FOS Polling</title>
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link rel="stylesheet" href="css/normalize.css" />
-    <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="css/index.css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <!-- Place favicon.ico in the root directory -->
 
-    <meta name="theme-color" content="#fafafa" />
-  </head>
+  <link rel="stylesheet" href="css/normalize.css" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/index.css" />
 
-  <body>
-    <!--[if lte IE 9]>
+  <meta name="theme-color" content="#fafafa" />
+</head>
+
+<body>
+  <!--[if lte IE 9]>
       <p class="browserupgrade">
         You are using an <strong>outdated</strong> browser. Please
         <a href="https://browsehappy.com/">upgrade your browser</a> to improve
@@ -26,226 +29,148 @@
       </p>
     <![endif]-->
 
-    <!-- Add your site or application content here -->
-    <div class="main-container">
-      <!-- Banner -->
-      <section id="banner">
-        <h2>Freedom Of Speech Polling site</h2>
-        <p>Ask and get real-time votes</p>
-      </section>
+  <!-- Add your site or application content here -->
+  <div class="main-container">
+    <!-- Banner -->
+    <section id="banner">
+      <h2>Freedom Of Speech Polling site</h2>
+      <p>Ask and get real-time votes</p>
+    </section>
 
-      <div class="login-signup-btn">
-        <button
-          onclick="document.getElementById('login').style.display='block'"
-          style="width:auto;"
-        >
-          Login
-        </button>
-        <button
-          class="main-signup-btn"
-          onclick="document.getElementById('signup').style.display='block'"
-          style="width:auto;"
-        >
-          Sign Up
-        </button>
-      </div>
-
-      <div id="login" class="modal-login animate-login">
-        <form class="modal-content-login" onsubmit="login(event, this)">
-          <span
-            onclick="document.getElementById('login').style.display='none'"
-            class="close-login"
-            title="Close Modal"
-            >&times;</span
-          >
-          <div class="container-login">
-            <h1>Log In</h1>
-            <p>Fill in your credentials to log in.</p>
-            <hr />
-            <label id="err_label1"></label><br />
-            <label for="email"><b>Email</b></label>
-            <input
-              id="login_email"
-              class="input-login"
-              type="email"
-              placeholder="Enter Email"
-              name="email"
-              title="Please type in your email address that you signed up with."
-              required
-              autofocus
-            />
-
-            <label for="password"><b>Password</b></label>
-            <input
-              id="login_password"
-              class="input-login"
-              type="password"
-              placeholder="Enter Password"
-              name="password"
-              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-              title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-              required
-            />
-
-            <button type="submit">Login</button>
-          </div>
-
-          <div class="container-login" style="background-color:#f1f1f1">
-            <button
-              type="button"
-              onclick="document.getElementById('login').style.display='none'"
-              class="cancelbtn-login login-general"
-            >
-              Cancel
-            </button>
-          </div>
-        </form>
-      </div>
-
-      <div id="signup" class="modal-signup animate-signup">
-        <span
-          onclick="document.getElementById('signup').style.display='none'"
-          class="signup-close"
-          title="Close Modal"
-          >&times;</span
-        >
-        <form class="modal-content-signup" onsubmit="register(event, this)">
-          <div class="container-signup">
-            <h1>Sign Up</h1>
-            <p>Please fill in the form to create your account.</p>
-            <hr />
-            <label id="err_label"></label><br />
-            <label for="name"><b>Name</b></label>
-            <input
-              id="register_name"
-              class="signup-input"
-              type="text"
-              placeholder="Enter Name"
-              name="name"
-              pattern="[A-Za-z0-9 ]{1,25}"
-              title="Name can only be a combination of letters and/or numbers."
-              required
-              autofocus
-            />
-
-            <label for="email"><b>Email</b></label>
-            <input
-              id="register_email"
-              class="signup-input"
-              type="email"
-              placeholder="Enter Email"
-              name="email"
-              title="Please type in your email address."
-              required
-            />
-
-            <label for="password"><b>Password</b></label>
-            <input
-              id="register_password"
-              class="signup-input"
-              type="password"
-              placeholder="Enter Password"
-              name="password"
-              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-              title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-              required
-            />
-
-            <label for="password-repeat"><b>Repeat Password</b></label>
-            <input
-              id="register_cpassword"
-              class="signup-input"
-              type="password"
-              placeholder="Repeat Password"
-              name="cpassword"
-              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-              title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-              required
-            />
-
-            <div class="clearfix">
-              <button
-                type="button"
-                onclick="document.getElementById('signup').style.display='none'"
-                class="cancelbtn"
-              >
-                Cancel
-              </button>
-              <button type="submit" class="signupbtn">Sign Up</button>
-            </div>
-          </div>
-        </form>
-      </div>
-
-      <!-- One -->
-      <section id="one" class="wrapper special">
-        <div class="inner">
-          <header class="major">
-            <h2>Features</h2>
-          </header>
-          <div class="features">
-            <div class="feature">
-              <i class="fa fa-diamond"></i>
-              <h3>Individual Account Management</h3>
-              <p>Log in to create and manage your own polls.</p>
-            </div>
-            <div class="feature">
-              <i class="fa fa-copy"></i>
-              <h3>Share your opinion on other people's polls</h3>
-              <p>
-                Browse the global poll dashboard to vote on polls that interest
-                you.
-              </p>
-            </div>
-            <div class="feature">
-              <i class="fa fa-paper-plane-o"></i>
-              <h3>Real-time polls</h3>
-              <p>
-                View the poll results in real-time. Polls stay forever unless
-                the publisher takes it down.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Footer -->
-      <footer id="footer">
-        <div class="copyright">
-          &copy; 2019, Freedom Of Speech Polling
-        </div>
-      </footer>
+    <div class="login-signup-btn">
+      <button onclick="document.getElementById('login').style.display='block'" style="width:auto;">
+        Login
+      </button>
+      <button class="main-signup-btn" onclick="document.getElementById('signup').style.display='block'" style="width:auto;">
+        Sign Up
+      </button>
     </div>
 
-    <script src="js/vendor/modernizr-3.6.0.min.js"></script>
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.min.js"
-      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-      crossorigin="anonymous"
-    ></script>
-    <script>
-      window.jQuery ||
-        document.write(
-          '<script src="js/vendor/jquery-3.3.1.min.js"><\/script>'
-        );
-    </script>
-    <script src="js/plugins.js"></script>
-    <script src="js/main.js"></script>
+    <div id="login" class="modal-login animate-login">
+      <form class="modal-content-login" onsubmit="login(event, this)">
+        <span onclick="document.getElementById('login').style.display='none'" class="close-login" title="Close Modal">&times;</span>
+        <div class="container-login">
+          <h1>Log In</h1>
+          <p>Fill in your credentials to log in.</p>
+          <hr />
+          <label id="err_label1"></label><br />
+          <label for="login_email"><b>Email</b></label>
+          <input id="login_email" class="input-login" type="email" placeholder="Enter Email" name="email" title="Please type in your email address that you signed up with." required autofocus />
 
-    <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-    <script>
-      window.ga = function() {
-        ga.q.push(arguments);
-      };
-      ga.q = [];
-      ga.l = +new Date();
-      ga("create", "UA-XXXXX-Y", "auto");
-      ga("send", "pageview");
-    </script>
-    <script
-      src="https://www.google-analytics.com/analytics.js"
-      async
-      defer
-    ></script>
-  </body>
+          <label for="login_password"><b>Password</b></label>
+          <input id="login_password" class="input-login" type="password" placeholder="Enter Password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+            title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required />
+
+          <button type="submit">Login</button>
+        </div>
+
+        <div class="container-login" style="background-color:#f1f1f1">
+          <button type="button" onclick="document.getElementById('login').style.display='none'" class="cancelbtn-login login-general">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div id="signup" class="modal-signup animate-signup">
+      <span onclick="document.getElementById('signup').style.display='none'" class="signup-close" title="Close Modal">&times;</span>
+      <form class="modal-content-signup" onsubmit="register(event, this)">
+        <div class="container-signup">
+          <h1>Sign Up</h1>
+          <p>Please fill in the form to create your account.</p>
+          <hr />
+          <label id="err_label"></label><br />
+          <label for="register_name"><b>Name</b></label>
+          <input id="register_name" class="signup-input" type="text" placeholder="Enter Name" name="name" pattern="[A-Za-z0-9 ]{1,25}" title="Name can only be a combination of letters and/or numbers." required />
+
+          <label for="register_email"><b>Email</b></label>
+          <input id="register_email" class="signup-input" type="email" placeholder="Enter Email" name="email" title="Please type in your email address." required />
+
+          <label for="register_password"><b>Password</b></label>
+          <input id="register_password" class="signup-input" type="password" placeholder="Enter Password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+            title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required />
+
+          <label for="register_cpassword"><b>Repeat Password</b></label>
+          <input id="register_cpassword" class="signup-input" type="password" placeholder="Repeat Password" name="cpassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+            title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required />
+
+          <div class="clearfix">
+            <button type="button" onclick="document.getElementById('signup').style.display='none'" class="cancelbtn">
+              Cancel
+            </button>
+            <button type="submit" class="signupbtn">Sign Up</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- One -->
+    <section id="one" class="wrapper special">
+      <div class="inner">
+        <header class="major">
+          <h2>Features</h2>
+        </header>
+        <div class="features">
+          <div class="feature">
+            <i class="fa fa-diamond"></i>
+            <h3>Individual Account Management</h3>
+            <p>Log in to create and manage your own polls.</p>
+          </div>
+          <div class="feature">
+            <i class="fa fa-copy"></i>
+            <h3>Share your opinion on other people's polls</h3>
+            <p>
+              Browse the global poll dashboard to vote on polls that interest
+              you.
+            </p>
+          </div>
+          <div class="feature">
+            <i class="fa fa-paper-plane-o"></i>
+            <h3>Real-time polls</h3>
+            <p>
+              View the poll results in real-time. Polls stay forever unless
+              the publisher takes it down.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer">
+      <div class="copyright">
+        &copy; 2019, Freedom Of Speech Polling
+        <p>
+          <a href="http://jigsaw.w3.org/css-validator/check/referer">
+            <img style="border:0;width:88px;height:31px" src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="Valid CSS!" />
+          </a>
+        </p>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/vendor/modernizr-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script>
+    window.jQuery ||
+      document.write(
+        '<script src="js/vendor/jquery-3.3.1.min.js"><\/script>'
+      );
+  </script>
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+  <script>
+    window.ga = function() {
+      ga.q.push(arguments);
+    };
+    ga.q = [];
+    ga.l = +new Date();
+    ga("create", "UA-XXXXX-Y", "auto");
+    ga("send", "pageview");
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+</body>
+
 </html>

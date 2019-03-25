@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="utf-8" />
+  <title>About Us</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="manifest" href="site.webmanifest" />
+  <link rel="apple-touch-icon" href="icon.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+  <link rel="stylesheet" href="css/about.css" />
+</head>
+
+<body>
+  <div class="main-container">
+    <nav class="nav-bar-class" id="nav-bar-id">
+      <h2>FOS Polling</h2>
+      <ul>
+        <li>
+          <a href="home.html">Home</a>
+        </li>
+        <li><a href="polls.html">Polls</a></li>
+        <li><a href="about.html">About</a></li>
+        <li id="logout"><a href="#logout" onclick="logout()">Log out</a></li>
+        <li><a href="javascript:void(0);" class="icon" onclick="navFunc()">
+            <i class="fa fa-bars"></i>
+          </a></li>
+      </ul>
+    </nav>
+    <div class="content-container">
+      <h1>About - Division of Labour</h1>
+      <p>We have divided the project into 2 parts as we are only 2 members in the group.
+        Moreover, the members were given the parts that they are more comfortable with.
+        However, when there was a need then we did work on each others part.</p>
+      <h2>Frontend</h2>
+      <p id="fahad">
+        <strong>Presentation Tier: </strong>
+        This tier is the design and interactions of the website (User Interface). The design is achieved using HTML5 and CSS3 and a bit of JS. There are 4 pages to the site.
+        The first is the welcome page aka index and the others are home and polls. The welcome page is the first page the users will see as it holds
+        the login and signup form. Once a user registers and logs in, they are redirected to the home. Then the home page is where a user can create their
+        own polls using the 'Create poll' button which is created using advanced css to give it the animation and looks it holds. There are various places
+        where animations are integrated, such as when a form pops up, the 'create poll' button, the results chart. The animation provides smoothness to
+        the interface. All the polls created by a user is shown in their home and they can delete any poll they want to. The polls page shows all
+        polls ever created from all the users giving the ability for any user to vote on any poll. The about page is the page where a detailed explanation of what went into
+        the creation of this website is given.
+        The html forms created have validation to restrict users from unwanted inputs therefore pattern attribute was used for it.
+        Similarly, many other attributes were used such as label, placeholder, title, required and autofocus to create a proper form and provide better
+        usability. Divs were used to create containers and wrappers to organize the content. Also used was the html tag 'nav' to build the navigation bar so that
+        users can navigate around the site easily. This navigation bar is responsive on all screen sizes. Furthermore, each poll has its own label
+        and fieldset so that the content it holds is within it. The chart generated replaces the poll once a vote is placed. The chart is updated in real time.
+        In addition, javascript is used where ever it was required such as in making the navigation bar responsive. Finally, all the html and css files and codes were
+        organized and structured properly using the Atom editor.
+      </p>
+      <h2>Backend - includes middleware</h2>
+      <p id="chester">
+        <strong>Application Tier: </strong>
+        The application tier for this service is realized using different technologies provide different services such as user authentication, access control, handling requests and interfacing with the data tier.
+
+        Our backend service is built on NodeJS using Express for route management, serving pages and handling backend requests through middleware functions. For the backend, we built our own APIs (accessible via /api/users and /api/polls). These API
+        routes take requests and interface with our MongoDB data tier using middleware functions from Mongoose, a MongoDB ODM, in order to model our application data, handle queries and interact with our MongoDB database.
+
+        When connecting to our private access API routes, access control is handled using JSON Web Tokens. These tokens are generated and signed using JSONWebToken and authenticated using Passport. We also use JWT (JSON Web Tokens) to store minimal
+        user
+        information such as user id and email in the payload for page to page authentication instead of using sessions. These JWTs are stored in localStorage on log in and are relatively secure. They are cleared when the user is logged out and have
+        an
+        expiration time of 30 minutes.
+
+        To send requests to our API routes, we use the Fetch API which provides a promise based, simple, cleaner API to that of a XMLHttpRequest. After the request is sent, it handles the promise and tells us if the request was successful or if not,
+        returns the error status along with an error message for us to display on our presentation layer.
+
+        In terms of server side validation, we do input validation for anything related to creating polls, log in or registration. These can be found in /validation. Most functions come from the Validator library due to ease of use. Some conditions
+        include checking if the field is empty, between a certain length or a valid email. In terms of registration and log in, passwords are also hashed using bcryptjs before being stored in our database and compared on log in.
+
+        In order to provide a real-time polling service, we use socket.io to provide realtime, bi-directional communication between our server and the different web clients. Every time a successful vote is made through our API route, the server emits
+        a
+        message to all the web clients telling them that a vote has been made. The web clients receive the emission through the persistent tcp connection and update the charts to display the new number of votes.
+
+        <br></br>
+
+        <strong>Data Tier: </strong>
+        The backend data tier was done using MongoDB as the database server where information about the users and the polls is stored. MongoDB was chosen as the database program because it deals with NoSQL databases which have many advantages
+        including
+        being highly scalable as well as being well suited for rapid development and prototyping which is what we are doing with this project. Our database is handled by a service called mLab which offers database-as-a-service for MongoDB. With their
+        services, they provide cloud automation, backup and recovery, security as well as an easy to use GUI when editing MongoDB documents and running queries. With these features, we can provide a seamless and secure service for our users.
+
+        Our MongoDB database comprises of two collections to store persistent information which are polls and users. A Poll document comprises of a unique id, the id of the user who created it, the question for the poll, an array of objects for the
+        options and the number of votes and an array of the ids of the users who voted to keep track if the user has voted or not. A User document includes a unique id for the user, a name for the user, the email of the user as well as a hashed
+        password.
+      </p>
+      <h2>Testing and test cases</h2>
+      <p>All backend API routes were tested using Postman before integrating them into the application.
+        Route testing included sending requests to the route, checking to see if a successful response was returned and checking the database to see if the collection or document was updated.
+        Test cases included accessing private routes without adding or adding invalid authentication to the header, sending requests with missing information in the body as well as with invalid information in the body.
+        <br></br>
+        The frontend was validated using <a href="https://html5.validator.nu/">https://html5.validator.nu/</a> for HTML5 and <a href="https://jigsaw.w3.org/css-validator/">https://jigsaw.w3.org/css-validator/</a> for
+        CSS3.
+      </p>
+    </div>
+  </div>
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="copyright">
+      &#169; 2019, Freedom Of Speech Polling
+      <p>
+        <a href="http://jigsaw.w3.org/css-validator/check/referer">
+          <img style="border:0;width:88px;height:31px" src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="Valid CSS!" />
+        </a>
+      </p>
+    </div>
+  </footer>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="./js/home.js"></script>
+  <script>
+    function navFunc() {
+      var x = document.getElementById("nav-bar-id");
+      if (x.className === "nav-bar-class") {
+        x.className += " responsive";
+      } else {
+        x.className = "nav-bar-class";
+      }
+    }
+  </script>
+</body>
+
+</html>
+<!-- IE needs 512+ bytes: https://blogs.msdn.microsoft.com/ieinternals/2010/08/18/friendly-http-error-pages/ -->

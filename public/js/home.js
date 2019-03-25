@@ -32,7 +32,9 @@ function getPolls() {
   fetch(get_polls)
     .then(res => {
       if (!res.ok) {
-        return res.status(404).json({ error: "Polls not found." });
+        return res.status(404).json({
+          error: "Polls not found."
+        });
       } else {
         if (localStorage.getItem("id") === null) {
           setTimeout(getPolls, 1000);
@@ -139,33 +141,39 @@ function getPolls() {
               // The data for our dataset
               data: {
                 labels: new_labels,
-                datasets: [
-                  {
-                    label: "# of Votes",
-                    data: new_votes,
-                    backgroundColor: [
-                      "#27ae60",
-                      "#2980b9",
-                      "#e67e22",
-                      "#e74c3c"
-                    ],
-                    borderColor: "#2c3e50"
+                datasets: [{
+                  label: "# of Votes",
+                  data: new_votes,
+                  backgroundColor: [
+                    "#27ae60",
+                    "#2980b9",
+                    "#e67e22",
+                    "#e74c3c"
+                  ],
+                  borderColor: "#2c3e50"
 
-                  }
-                ]
+                }]
               },
               // Configuration options go here
               options: {
                 responsive: true,
                 maintainAspectRatio: false,
                 scales: {
-                  yAxes: [
-                    {
-                      ticks: {
-                        stepSize: 1
-                      }
+                  yAxes: [{
+                    ticks: {
+                      stepSize: 1
                     }
-                  ]
+                  }]
+                },
+                legend: {
+                  display: false
+                },
+                tooltips: {
+                  callbacks: {
+                    label: function(tooltipItem) {
+                      return tooltipItem.yLabel;
+                    }
+                  }
                 }
               }
             });
@@ -323,27 +331,33 @@ socket.on("newvote", data => {
 
         data: {
           labels: new_labels,
-          datasets: [
-            {
-              label: "Results",
-              backgroundColor: ["#27ae60", "#2980b9", "#e67e22", "#e74c3c"],
-              borderColor: "#2c3e50",
-              data: new_votes
-            }
-          ]
+          datasets: [{
+            label: "Results",
+            backgroundColor: ["#27ae60", "#2980b9", "#e67e22", "#e74c3c"],
+            borderColor: "#2c3e50",
+            data: new_votes
+          }]
         },
 
         options: {
           responsive: true,
           maintainAspectRatio: false,
           scales: {
-            yAxes: [
-              {
-                ticks: {
-                  stepSize: 1
-                }
+            yAxes: [{
+              ticks: {
+                stepSize: 1
               }
-            ]
+            }]
+          },
+          legend: {
+            display: false
+          },
+          tooltips: {
+            callbacks: {
+              label: function(tooltipItem) {
+                return tooltipItem.yLabel;
+              }
+            }
           }
         }
       });
