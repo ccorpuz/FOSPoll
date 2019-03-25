@@ -1,6 +1,7 @@
 @import url(font-awesome.min.css);
 @import url("http://fonts.googleapis.com/css?family=Raleway:500,700");
 
+
 *,
 *::before,
 *::after {
@@ -15,7 +16,7 @@ html {
   border: 0;
   font-size: 100%;
   font: inherit;
-  font-family: "Raleway", sans-serif;
+  font-family: 'Raleway', sans-serif;
   vertical-align: baseline;
   height: 100%;
 }
@@ -157,72 +158,8 @@ nav>ul>li>a:hover {
   flex: 1 0 auto;
 }
 
-.page-title {
+.content-container {
   text-align: center;
-}
-
-.polls-container {
-  font-size: 62.5%;
-  font-family: "Raleway", sans-serif;
-  box-sizing: border-box;
-}
-
-label {
-  display: block;
-  padding: 5px;
-  font-size: 1.4em;
-  color: black;
-}
-
-fieldset {
-  border-radius: 10px;
-  margin: auto;
-  width: 80vmin;
-  padding: 8px 15px 15px 15px;
-  margin-top: 20px;
-  /* IE 7 Requires This */
-}
-
-form {
-  font-size: 2vh;
-}
-
-legend#poll-legend {
-  padding: 4px 6px 4px 6px;
-  border: 1px solid;
-  border-color: #00cdcf;
-  border-radius: 5px;
-  font-size: 2.0em;
-  color: black;
-  font-style: italic;
-}
-
-.voteButton {
-  -moz-box-shadow: inset 0px 1px 0px 0px #54a3f7;
-  -webkit-box-shadow: inset 0px 1px 0px 0px #54a3f7;
-  box-shadow: inset 0px 1px 0px 0px #54a3f7;
-  background-color: #007dc1;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  border: 1px solid #124d77;
-  display: inline-block;
-  cursor: pointer;
-  color: #ffffff;
-  font-family: Arial;
-  font-size: 13px;
-  padding: 6px 24px;
-  text-decoration: none;
-  text-shadow: 0px 1px 0px #154682;
-}
-
-.voteButton:hover {
-  background-color: #0061a7;
-}
-
-.voteButton:active {
-  position: relative;
-  top: 1px;
 }
 
 /* Footer */
@@ -236,7 +173,7 @@ legend#poll-legend {
 
 #footer:before {
   background-color: #ddd;
-  content: "";
+  content: '';
   height: 1px;
   left: 30%;
   position: absolute;

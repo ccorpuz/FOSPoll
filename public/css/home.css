@@ -38,7 +38,7 @@ nav {
   text-align: center;
 }
 
-nav h1 {
+nav h2 {
   float: left;
   display: inline-block;
   color: #00cdcf;
@@ -112,15 +112,46 @@ nav>ul>li>a:hover {
   background-color: #00cdcf;
 }
 
-nav ul>li.dd {
-  background-image: url("../img/white-down-arrow.png");
-  background-size: 2.5vh;
-  background-position: bottom;
-  background-repeat: no-repeat;
+.nav-bar-class .icon {
+  display: none;
 }
 
-.nav-create-poll {
-  cursor: pointer;
+@media screen and (max-width: 600px) {
+  .nav-bar-class>ul>li:not(:last-child) {
+    display: none;
+  }
+
+  .nav-bar-class a.icon {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .nav-bar-class.responsive {
+    position: relative;
+  }
+
+  .nav-bar-class.responsive h2 {
+    float: none;
+  }
+
+  .nav-bar-class.responsive #logout {
+    float: none;
+    margin: 0 auto;
+  }
+
+  .nav-bar-class.responsive .icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .nav-bar-class.responsive ul>li {
+    display: block;
+  }
 }
 
 .main-container {
@@ -160,8 +191,6 @@ a.poll-btn:hover {
 a.poll-btn:focus {
   color: #FFF;
 }
-
-
 
 .poll-btn {
   cursor: pointer;
@@ -366,7 +395,6 @@ form {
   font-size: 2vh;
 }
 
-
 legend#poll-legend {
   padding: 4px 6px 4px 6px;
   border: 1px solid;
@@ -378,57 +406,61 @@ legend#poll-legend {
 }
 
 .voteButton {
--moz-box-shadow:inset 0px 1px 0px 0px #54a3f7;
--webkit-box-shadow:inset 0px 1px 0px 0px #54a3f7;
-box-shadow:inset 0px 1px 0px 0px #54a3f7;
-background-color:#007dc1;
--moz-border-radius:3px;
--webkit-border-radius:3px;
-border-radius:3px;
-border:1px solid #124d77;
-display:inline-block;
-cursor:pointer;
-color:#ffffff;
-font-family:Arial;
-font-size:13px;
-padding:6px 24px;
-margin-top: 8px;
-text-decoration:none;
-text-shadow:0px 1px 0px #154682;
+  -moz-box-shadow: inset 0px 1px 0px 0px #54a3f7;
+  -webkit-box-shadow: inset 0px 1px 0px 0px #54a3f7;
+  box-shadow: inset 0px 1px 0px 0px #54a3f7;
+  background-color: #007dc1;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid #124d77;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 13px;
+  padding: 6px 24px;
+  margin-top: 8px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #154682;
 }
+
 .voteButton:hover {
-background-color:#0061a7;
+  background-color: #0061a7;
 }
+
 .voteButton:active {
-position:relative;
-top:1px;
+  position: relative;
+  top: 1px;
 }
 
 .deleteButton {
-	-moz-box-shadow:inset 0px 1px 0px 0px #cf866c;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #cf866c;
-	box-shadow:inset 0px 1px 0px 0px #cf866c;
-	background-color:#d0451b;
-	-moz-border-radius:3px;
-	-webkit-border-radius:3px;
-	border-radius:3px;
-	border:1px solid #942911;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:13px;
-	padding:6px 24px;
+  -moz-box-shadow: inset 0px 1px 0px 0px #cf866c;
+  -webkit-box-shadow: inset 0px 1px 0px 0px #cf866c;
+  box-shadow: inset 0px 1px 0px 0px #cf866c;
+  background-color: #d0451b;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid #942911;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 13px;
+  padding: 6px 24px;
   margin-top: 8px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #854629;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #854629;
 }
+
 .deleteButton:hover {
-	background-color:#bc3315;
+  background-color: #bc3315;
 }
+
 .deleteButton:active {
-	position:relative;
-	top:1px;
+  position: relative;
+  top: 1px;
 }
 
 /* Footer */
